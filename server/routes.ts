@@ -3,6 +3,8 @@ import { createServer, type Server } from "http";
 import { storage } from "./mongo-storage";
 import { insertOrderSchema, insertCategorySchema, insertMenuItemSchema } from "@shared/schema";
 import { z } from "zod";
+import multer from "multer";
+import crypto from "crypto";
 
 // Authentication middleware
 function requireAuth(req: any, res: any, next: any) {
@@ -355,7 +357,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // ImageKit upload signature endpoint
   app.get("/api/imagekit/auth", requireAuth, async (req, res) => {
     try {
-      const crypto = await import("crypto");
       const token = (typeof req.query.token === 'string' ? req.query.token : null) || crypto.randomUUID();
       const expire = (typeof req.query.expire === 'string' ? req.query.expire : null) || (Math.floor(Date.now() / 1000) + 2400).toString();
       const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
@@ -376,6 +377,78 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     } catch (error) {
       res.status(500).json({ error: "Failed to generate signature" });
+    }
+  });
+
+  // Server-side image upload endpoint
+  const upload = multer({ storage: multer.memoryStorage() });
+  
+  app.post("/api/imagekit/upload", requireAuth, upload.single('file'), async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: "No file uploaded" });
+      }
+
+      const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
+      const publicKey = process.env.IMAGEKIT_PUBLIC_KEY;
+      const urlEndpoint = process.env.IMAGEKIT_URL_ENDPOINT;
+
+      if (!privateKey || !publicKey || !urlEndpoint) {
+        return res.status(500).json({ error: "ImageKit not configured" });
+      }
+
+      // Generate authentication parameters
+      const token = crypto.randomUUID();
+      const expire = (Math.floor(Date.now() / 1000) + 2400).toString();
+      const signature = crypto
+        .createHmac("sha1", privateKey)
+        .update(token + expire)
+        .digest("hex");
+
+      // Create FormData for ImageKit upload
+      const FormData = (await import("form-data")).default;
+      const formData = new FormData();
+      formData.append("file", req.file.buffer, {
+        filename: req.file.originalname,
+        contentType: req.file.mimetype,
+      });
+      formData.append("publicKey", publicKey);
+      formData.append("signature", signature);
+      formData.append("expire", expire);
+      formData.append("token", token);
+      formData.append("fileName", req.file.originalname);
+
+      // Upload to ImageKit
+      console.log("Uploading to ImageKit:", `${urlEndpoint}/api/v1/files/upload`);
+      const uploadResponse = await fetch(`${urlEndpoint}/api/v1/files/upload`, {
+        method: "POST",
+        body: formData as any,
+        headers: formData.getHeaders(),
+      });
+
+      console.log("ImageKit response status:", uploadResponse.status);
+      
+      if (!uploadResponse.ok) {
+        const errorText = await uploadResponse.text();
+        console.error("ImageKit upload error status:", uploadResponse.status);
+        console.error("ImageKit upload error body:", errorText);
+        console.error("ImageKit upload error headers:", Object.fromEntries(uploadResponse.headers.entries()));
+        return res.status(uploadResponse.status).json({ 
+          error: "Upload to ImageKit failed",
+          details: errorText,
+          status: uploadResponse.status
+        });
+      }
+
+      const result = await uploadResponse.json();
+      console.log("ImageKit upload successful:", result.url);
+      res.json({ url: result.url, fileId: result.fileId });
+    } catch (error) {
+      console.error("Upload error:", error);
+      res.status(500).json({ 
+        error: "Failed to upload image",
+        details: error instanceof Error ? error.message : "Unknown error"
+      });
     }
   });
 

@@ -19,35 +19,18 @@ export function ImageUpload({ value, onChange, label = "Image" }: ImageUploadPro
   const uploadToImageKit = async (file: File) => {
     setIsUploading(true);
     try {
-      const authResponse = await fetch("/api/imagekit/auth");
-      if (!authResponse.ok) {
-        throw new Error("Failed to get authentication");
-      }
-
-      const { token, expire, signature } = await authResponse.json();
-
-      const publicKey = import.meta.env.VITE_IMAGEKIT_PUBLIC_KEY;
-      const urlEndpoint = import.meta.env.VITE_IMAGEKIT_URL_ENDPOINT;
-
-      if (!publicKey || !urlEndpoint) {
-        throw new Error("ImageKit not configured");
-      }
-
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("publicKey", publicKey);
-      formData.append("signature", signature);
-      formData.append("expire", expire);
-      formData.append("token", token);
-      formData.append("fileName", file.name);
 
-      const uploadResponse = await fetch(`${urlEndpoint}/api/v1/files/upload`, {
+      const uploadResponse = await fetch("/api/imagekit/upload", {
         method: "POST",
         body: formData,
+        credentials: "include",
       });
 
       if (!uploadResponse.ok) {
-        throw new Error("Upload failed");
+        const errorData = await uploadResponse.json().catch(() => ({}));
+        throw new Error(errorData.error || "Upload failed");
       }
 
       const result = await uploadResponse.json();

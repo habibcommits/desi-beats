@@ -20,6 +20,10 @@ localPort = 36831
 externalPort = 3001
 
 [[ports]]
+localPort = 38559
+externalPort = 3003
+
+[[ports]]
 localPort = 39073
 externalPort = 3000
 
@@ -50,5 +54,5 @@ waitForPort = 5000
 [userenv]
 
 [userenv.shared]
-VITE_IMAGEKIT_PUBLIC_KEY = "placeholder"
-VITE_IMAGEKIT_URL_ENDPOINT = "placeholder"
+VITE_IMAGEKIT_PUBLIC_KEY = "public_5ZOcRKen6PR7/Q5FPrOGseUR90U="
+VITE_IMAGEKIT_URL_ENDPOINT = "https://ik.imagekit.io/douamv4eq"

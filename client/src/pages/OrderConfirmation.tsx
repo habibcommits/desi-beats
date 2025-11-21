@@ -145,7 +145,7 @@ export default function OrderConfirmation() {
             <div className="flex justify-between text-lg font-bold">
               <span>Total Amount</span>
               <span className="text-destructive" data-testid="text-order-total">
-                Rs {parseFloat(order.totalAmount).toLocaleString()}
+                Rs {order.totalAmount.toLocaleString()}
               </span>
             </div>
 

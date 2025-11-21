@@ -64,8 +64,8 @@ export class MongoStorage implements IStorage {
       description: doc.description ?? null,
       price: doc.price,
       image: doc.image ?? null,
-      available: doc.available ? 1 : 0,
-      featured: doc.featured ? 1 : 0,
+      available: Boolean(doc.available),
+      featured: Boolean(doc.featured),
       order: doc.order,
     };
   }
@@ -77,7 +77,7 @@ export class MongoStorage implements IStorage {
       customerPhone: doc.customerPhone,
       customerAddress: doc.customerAddress ?? null,
       deliveryType: doc.deliveryType,
-      totalAmount: doc.totalAmount.toString(),
+      totalAmount: doc.totalAmount,
       status: doc.status,
       items: doc.items,
       createdAt: doc.createdAt.toISOString(),

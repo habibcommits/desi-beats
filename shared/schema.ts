@@ -49,8 +49,8 @@ export type MenuItem = {
   description?: string | null;
   price: number;
   image?: string | null;
-  available: number;
-  featured: number;
+  available: boolean;
+  featured: boolean;
   order: number;
 };
 
@@ -62,7 +62,7 @@ export type Order = {
   customerPhone: string;
   customerAddress?: string | null;
   deliveryType: string;
-  totalAmount: string;
+  totalAmount: number;
   status: string;
   items: string;
   createdAt: string;

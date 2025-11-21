@@ -42,7 +42,7 @@ async function scrapeFoodPanda(url: string): Promise<ScrapedData> {
   });
 
   // Wait for the page to load
-  await page.waitForTimeout(3000);
+  await new Promise(resolve => setTimeout(resolve, 3000));
 
   // Scroll down to load all products
   console.log('📜 Scrolling to load all products...');

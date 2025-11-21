@@ -55,21 +55,30 @@ export default function CheckoutPage() {
     },
   });
 
-  const onSubmit = (data: InsertOrder) => {
-    const orderData: InsertOrder = {
-      ...data,
-      totalAmount: totalPrice.toFixed(2),
-      items: JSON.stringify(items.map(item => ({
-        menuItem: {
-          id: item.menuItem.id,
-          name: item.menuItem.name,
-          price: item.menuItem.price,
-          image: item.menuItem.image
-        },
-        quantity: item.quantity
-      }))),
-    };
-    createOrderMutation.mutate(orderData);
+  const onSubmit = (data: any) => {
+    try {
+      const orderData = {
+        ...data,
+        totalAmount: parseFloat(totalPrice.toFixed(2)),
+        items: JSON.stringify(items.map(item => ({
+          menuItem: {
+            id: item.menuItem.id,
+            name: item.menuItem.name,
+            price: item.menuItem.price,
+            image: item.menuItem.image
+          },
+          quantity: item.quantity
+        }))),
+      };
+      createOrderMutation.mutate(orderData);
+    } catch (error) {
+      console.error("Order submission error:", error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to process order",
+      });
+    }
   };
 
   if (items.length === 0) {

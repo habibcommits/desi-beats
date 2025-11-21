@@ -1,0 +1,708 @@
+// server/index-prod.ts
+import fs from "node:fs";
+import path from "node:path";
+import express2 from "express";
+
+// server/app.ts
+import express from "express";
+import session from "express-session";
+import memorystore from "memorystore";
+
+// server/routes.ts
+import { createServer } from "http";
+
+// server/mongo-storage.ts
+import mongoose2 from "mongoose";
+
+// server/models.ts
+import mongoose, { Schema } from "mongoose";
+var categorySchema = new Schema({
+  name: { type: String, required: true },
+  slug: { type: String, required: true, unique: true },
+  description: { type: String },
+  image: { type: String },
+  order: { type: Number, required: true, default: 0 }
+});
+var menuItemSchema = new Schema({
+  categoryId: { type: String, required: true, ref: "Category" },
+  name: { type: String, required: true },
+  description: { type: String },
+  price: { type: Number, required: true },
+  image: { type: String },
+  available: { type: Boolean, required: true, default: true },
+  featured: { type: Boolean, required: true, default: false },
+  order: { type: Number, required: true, default: 0 }
+});
+var orderSchema = new Schema({
+  customerName: { type: String, required: true },
+  customerPhone: { type: String, required: true },
+  customerAddress: { type: String },
+  deliveryType: { type: String, required: true, enum: ["delivery", "pickup"] },
+  totalAmount: { type: Number, required: true },
+  status: { type: String, required: true, default: "pending" },
+  items: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now }
+});
+var CategoryModel = mongoose.models.Category || mongoose.model("Category", categorySchema);
+var MenuItemModel = mongoose.models.MenuItem || mongoose.model("MenuItem", menuItemSchema);
+var OrderModel = mongoose.models.Order || mongoose.model("Order", orderSchema);
+
+// server/mongo-storage.ts
+var MongoStorage = class {
+  isConnected = false;
+  constructor() {
+    this.connect();
+  }
+  async connect() {
+    if (this.isConnected) {
+      return;
+    }
+    const mongoUri = process.env.MONGO_URI || process.env.MONGODB_URI;
+    if (!mongoUri) {
+      throw new Error("MONGO_URI or MONGODB_URI environment variable is not set");
+    }
+    try {
+      await mongoose2.connect(mongoUri);
+      this.isConnected = true;
+      console.log("Connected to MongoDB successfully");
+    } catch (error) {
+      console.error("MongoDB connection error:", error);
+      throw error;
+    }
+  }
+  async ensureConnection() {
+    if (!this.isConnected) {
+      await this.connect();
+    }
+  }
+  // Helper to convert MongoDB document to app format
+  convertCategory(doc) {
+    return {
+      id: doc._id.toString(),
+      name: doc.name,
+      slug: doc.slug,
+      description: doc.description ?? null,
+      image: doc.image ?? null,
+      order: doc.order
+    };
+  }
+  convertMenuItem(doc) {
+    return {
+      id: doc._id.toString(),
+      categoryId: doc.categoryId,
+      name: doc.name,
+      description: doc.description ?? null,
+      price: doc.price,
+      image: doc.image ?? null,
+      available: doc.available ? 1 : 0,
+      featured: doc.featured ? 1 : 0,
+      order: doc.order
+    };
+  }
+  convertOrder(doc) {
+    return {
+      id: doc._id.toString(),
+      customerName: doc.customerName,
+      customerPhone: doc.customerPhone,
+      customerAddress: doc.customerAddress ?? null,
+      deliveryType: doc.deliveryType,
+      totalAmount: doc.totalAmount.toString(),
+      status: doc.status,
+      items: doc.items,
+      createdAt: doc.createdAt.toISOString()
+    };
+  }
+  // Categories
+  async getCategories() {
+    await this.ensureConnection();
+    const categories = await CategoryModel.find().sort({ order: 1 });
+    return categories.map(this.convertCategory);
+  }
+  async getCategoryById(id) {
+    await this.ensureConnection();
+    const category = await CategoryModel.findById(id);
+    return category ? this.convertCategory(category) : void 0;
+  }
+  async getCategoryBySlug(slug) {
+    await this.ensureConnection();
+    const category = await CategoryModel.findOne({ slug });
+    return category ? this.convertCategory(category) : void 0;
+  }
+  async createCategory(category) {
+    await this.ensureConnection();
+    const newCategory = await CategoryModel.create(category);
+    return this.convertCategory(newCategory);
+  }
+  async updateCategory(id, categoryData) {
+    await this.ensureConnection();
+    const updated = await CategoryModel.findByIdAndUpdate(id, categoryData, { new: true });
+    return updated ? this.convertCategory(updated) : void 0;
+  }
+  async deleteCategory(id) {
+    await this.ensureConnection();
+    const result = await CategoryModel.findByIdAndDelete(id);
+    return !!result;
+  }
+  // Menu Items
+  async getMenuItems() {
+    await this.ensureConnection();
+    const items = await MenuItemModel.find().sort({ order: 1 });
+    return items.map(this.convertMenuItem);
+  }
+  async getMenuItemById(id) {
+    await this.ensureConnection();
+    const item = await MenuItemModel.findById(id);
+    return item ? this.convertMenuItem(item) : void 0;
+  }
+  async getMenuItemsByCategory(categoryId) {
+    await this.ensureConnection();
+    const items = await MenuItemModel.find({ categoryId }).sort({ order: 1 });
+    return items.map(this.convertMenuItem);
+  }
+  async createMenuItem(menuItem) {
+    await this.ensureConnection();
+    const newItem = await MenuItemModel.create(menuItem);
+    return this.convertMenuItem(newItem);
+  }
+  async updateMenuItem(id, menuItem) {
+    await this.ensureConnection();
+    const updated = await MenuItemModel.findByIdAndUpdate(id, menuItem, { new: true });
+    return updated ? this.convertMenuItem(updated) : void 0;
+  }
+  async deleteMenuItem(id) {
+    await this.ensureConnection();
+    const result = await MenuItemModel.findByIdAndDelete(id);
+    return !!result;
+  }
+  // Orders
+  async getOrders() {
+    await this.ensureConnection();
+    const orders = await OrderModel.find().sort({ createdAt: -1 });
+    return orders.map(this.convertOrder);
+  }
+  async getOrderById(id) {
+    await this.ensureConnection();
+    const order = await OrderModel.findById(id);
+    return order ? this.convertOrder(order) : void 0;
+  }
+  async createOrder(order) {
+    await this.ensureConnection();
+    const newOrder = await OrderModel.create(order);
+    return this.convertOrder(newOrder);
+  }
+  async updateOrderStatus(id, status) {
+    await this.ensureConnection();
+    const updated = await OrderModel.findByIdAndUpdate(id, { status }, { new: true });
+    return updated ? this.convertOrder(updated) : void 0;
+  }
+};
+var storage = new MongoStorage();
+
+// shared/schema.ts
+import { z } from "zod";
+var insertCategorySchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  slug: z.string().min(1, "Slug is required"),
+  description: z.string().optional(),
+  image: z.string().optional(),
+  order: z.number().default(0)
+});
+var insertMenuItemSchema = z.object({
+  categoryId: z.string().min(1, "Category ID is required"),
+  name: z.string().min(1, "Name is required"),
+  description: z.string().optional(),
+  price: z.number().positive("Price must be positive"),
+  image: z.string().optional(),
+  available: z.boolean().default(true),
+  featured: z.boolean().default(false),
+  order: z.number().default(0)
+});
+var insertOrderSchema = z.object({
+  customerName: z.string().min(2, "Name must be at least 2 characters"),
+  customerPhone: z.string().min(10, "Phone number must be at least 10 digits"),
+  customerAddress: z.string().optional(),
+  deliveryType: z.enum(["delivery", "pickup"]),
+  totalAmount: z.number().positive("Total amount must be positive"),
+  status: z.string().default("pending"),
+  items: z.string()
+});
+
+// server/routes.ts
+import { z as z2 } from "zod";
+import multer from "multer";
+import crypto from "crypto";
+function requireAuth(req, res, next) {
+  if (!req.session?.isAdmin) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+  next();
+}
+async function registerRoutes(app2) {
+  app2.post("/api/auth/login", async (req, res) => {
+    try {
+      const loginSchema = z2.object({
+        username: z2.string().min(1, "Username is required"),
+        password: z2.string().min(1, "Password is required")
+      });
+      const { username, password } = loginSchema.parse(req.body);
+      const adminUsername = process.env.ADMIN_USERNAME || "admin";
+      const adminPassword = process.env.ADMIN_PASSWORD || "admin";
+      if (username === adminUsername && password === adminPassword) {
+        req.session.isAdmin = true;
+        res.json({ success: true, message: "Logged in successfully" });
+      } else {
+        res.status(401).json({ error: "Invalid credentials" });
+      }
+    } catch (error) {
+      if (error instanceof z2.ZodError) {
+        return res.status(400).json({ error: "Invalid input", details: error.errors });
+      }
+      res.status(500).json({ error: "Login failed" });
+    }
+  });
+  app2.post("/api/auth/logout", async (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).json({ error: "Logout failed" });
+      }
+      res.json({ success: true, message: "Logged out successfully" });
+    });
+  });
+  app2.get("/api/auth/status", async (req, res) => {
+    res.json({ isAuthenticated: !!req.session?.isAdmin });
+  });
+  app2.get("/api/hero-slider", async (req, res) => {
+    try {
+      const fs2 = await import("fs");
+      const path2 = await import("path");
+      const configPath = path2.join(process.cwd(), "hero-slider-config.json");
+      if (fs2.existsSync(configPath)) {
+        const config = JSON.parse(fs2.readFileSync(configPath, "utf-8"));
+        res.json(config);
+      } else {
+        res.json({
+          slides: [
+            {
+              id: 1,
+              title: "Halwa Puri Nashta Deal",
+              description: "2 Puri + 1 Plate Aloo + 1 Cup Halwa",
+              price: "450",
+              bgGradient: "from-amber-600/90 to-orange-800/90",
+              imageUrl: ""
+            },
+            {
+              id: 2,
+              title: "Family BBQ Platter",
+              description: "Malai Boti 6 Seekh + Naan + Raita",
+              price: "2400",
+              bgGradient: "from-red-700/90 to-red-900/90",
+              imageUrl: ""
+            },
+            {
+              id: 3,
+              title: "Desi Murgh Karahi",
+              description: "Full Karahi with 4 Naan",
+              price: "3700",
+              bgGradient: "from-orange-600/90 to-amber-800/90",
+              imageUrl: ""
+            }
+          ]
+        });
+      }
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch hero slider data" });
+    }
+  });
+  app2.get("/api/categories", async (req, res) => {
+    try {
+      const categories = await storage.getCategories();
+      res.json(categories);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch categories" });
+    }
+  });
+  app2.get("/api/categories/:id", async (req, res) => {
+    try {
+      const category = await storage.getCategoryById(req.params.id);
+      if (!category) {
+        return res.status(404).json({ error: "Category not found" });
+      }
+      res.json(category);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch category" });
+    }
+  });
+  app2.get("/api/menu-items", async (req, res) => {
+    try {
+      const { categoryId } = req.query;
+      if (categoryId && typeof categoryId === "string") {
+        const items2 = await storage.getMenuItemsByCategory(categoryId);
+        return res.json(items2);
+      }
+      const items = await storage.getMenuItems();
+      res.json(items);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch menu items" });
+    }
+  });
+  app2.get("/api/menu-items/:id", async (req, res) => {
+    try {
+      const item = await storage.getMenuItemById(req.params.id);
+      if (!item) {
+        return res.status(404).json({ error: "Menu item not found" });
+      }
+      res.json(item);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch menu item" });
+    }
+  });
+  app2.get("/api/orders", requireAuth, async (req, res) => {
+    try {
+      const orders = await storage.getOrders();
+      res.json(orders);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch orders" });
+    }
+  });
+  app2.get("/api/orders/:id", async (req, res) => {
+    try {
+      const order = await storage.getOrderById(req.params.id);
+      if (!order) {
+        return res.status(404).json({ error: "Order not found" });
+      }
+      res.json(order);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch order" });
+    }
+  });
+  app2.post("/api/orders", async (req, res) => {
+    try {
+      const body = { ...req.body };
+      if (body.totalAmount !== void 0) {
+        const parsed = typeof body.totalAmount === "string" ? parseFloat(body.totalAmount) : body.totalAmount;
+        if (!Number.isFinite(parsed)) {
+          return res.status(400).json({ error: "Invalid total amount value" });
+        }
+        body.totalAmount = parsed;
+      }
+      const validatedData = insertOrderSchema.parse(body);
+      const order = await storage.createOrder(validatedData);
+      res.status(201).json(order);
+    } catch (error) {
+      if (error instanceof z2.ZodError) {
+        return res.status(400).json({ error: "Invalid order data", details: error.errors });
+      }
+      res.status(500).json({ error: "Failed to create order" });
+    }
+  });
+  app2.patch("/api/orders/:id/status", requireAuth, async (req, res) => {
+    try {
+      const { status } = req.body;
+      if (!status || typeof status !== "string") {
+        return res.status(400).json({ error: "Status is required" });
+      }
+      const order = await storage.updateOrderStatus(req.params.id, status);
+      if (!order) {
+        return res.status(404).json({ error: "Order not found" });
+      }
+      res.json(order);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to update order status" });
+    }
+  });
+  app2.post("/api/admin/categories", requireAuth, async (req, res) => {
+    try {
+      const body = { ...req.body };
+      if (body.order !== void 0 && typeof body.order === "string") {
+        body.order = parseInt(body.order, 10);
+      }
+      const validatedData = insertCategorySchema.parse(body);
+      const category = await storage.createCategory(validatedData);
+      res.status(201).json(category);
+    } catch (error) {
+      if (error instanceof z2.ZodError) {
+        return res.status(400).json({ error: "Invalid category data", details: error.errors });
+      }
+      res.status(500).json({ error: "Failed to create category" });
+    }
+  });
+  app2.patch("/api/admin/categories/:id", requireAuth, async (req, res) => {
+    try {
+      const updateSchema = insertCategorySchema.partial();
+      const body = { ...req.body };
+      if (body.order !== void 0 && typeof body.order === "string") {
+        body.order = parseInt(body.order, 10);
+      }
+      const validatedData = updateSchema.parse(body);
+      const category = await storage.updateCategory(req.params.id, validatedData);
+      if (!category) {
+        return res.status(404).json({ error: "Category not found" });
+      }
+      res.json(category);
+    } catch (error) {
+      if (error instanceof z2.ZodError) {
+        return res.status(400).json({ error: "Invalid category data", details: error.errors });
+      }
+      res.status(500).json({ error: "Failed to update category" });
+    }
+  });
+  app2.delete("/api/admin/categories/:id", requireAuth, async (req, res) => {
+    try {
+      const deleted = await storage.deleteCategory(req.params.id);
+      if (!deleted) {
+        return res.status(404).json({ error: "Category not found" });
+      }
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to delete category" });
+    }
+  });
+  app2.post("/api/admin/menu-items", requireAuth, async (req, res) => {
+    try {
+      const body = { ...req.body };
+      if (body.price !== void 0) {
+        const parsed = typeof body.price === "string" ? parseFloat(body.price) : body.price;
+        if (!Number.isFinite(parsed)) {
+          return res.status(400).json({ error: "Invalid price value" });
+        }
+        body.price = parsed;
+      }
+      if (body.order !== void 0 && typeof body.order === "string") {
+        body.order = parseInt(body.order, 10);
+      }
+      if (body.available !== void 0) {
+        body.available = body.available === 1 || body.available === "1" || body.available === true || body.available === "true";
+      }
+      if (body.featured !== void 0) {
+        body.featured = body.featured === 1 || body.featured === "1" || body.featured === true || body.featured === "true";
+      }
+      const validatedData = insertMenuItemSchema.parse(body);
+      const menuItem = await storage.createMenuItem(validatedData);
+      res.status(201).json(menuItem);
+    } catch (error) {
+      if (error instanceof z2.ZodError) {
+        return res.status(400).json({ error: "Invalid menu item data", details: error.errors });
+      }
+      res.status(500).json({ error: "Failed to create menu item" });
+    }
+  });
+  app2.patch("/api/admin/menu-items/:id", requireAuth, async (req, res) => {
+    try {
+      const updateSchema = insertMenuItemSchema.partial();
+      const body = { ...req.body };
+      if (body.price !== void 0) {
+        const parsed = typeof body.price === "string" ? parseFloat(body.price) : body.price;
+        if (!Number.isFinite(parsed)) {
+          return res.status(400).json({ error: "Invalid price value" });
+        }
+        body.price = parsed;
+      }
+      if (body.order !== void 0 && typeof body.order === "string") {
+        body.order = parseInt(body.order, 10);
+      }
+      if (body.available !== void 0) {
+        body.available = body.available === 1 || body.available === "1" || body.available === true || body.available === "true";
+      }
+      if (body.featured !== void 0) {
+        body.featured = body.featured === 1 || body.featured === "1" || body.featured === true || body.featured === "true";
+      }
+      const validatedData = updateSchema.parse(body);
+      const menuItem = await storage.updateMenuItem(req.params.id, validatedData);
+      if (!menuItem) {
+        return res.status(404).json({ error: "Menu item not found" });
+      }
+      res.json(menuItem);
+    } catch (error) {
+      if (error instanceof z2.ZodError) {
+        return res.status(400).json({ error: "Invalid menu item data", details: error.errors });
+      }
+      res.status(500).json({ error: "Failed to update menu item" });
+    }
+  });
+  app2.delete("/api/admin/menu-items/:id", requireAuth, async (req, res) => {
+    try {
+      const deleted = await storage.deleteMenuItem(req.params.id);
+      if (!deleted) {
+        return res.status(404).json({ error: "Menu item not found" });
+      }
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to delete menu item" });
+    }
+  });
+  app2.get("/api/imagekit/auth", requireAuth, async (req, res) => {
+    try {
+      const token = (typeof req.query.token === "string" ? req.query.token : null) || crypto.randomUUID();
+      const expire = (typeof req.query.expire === "string" ? req.query.expire : null) || (Math.floor(Date.now() / 1e3) + 2400).toString();
+      const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
+      if (!privateKey) {
+        return res.status(500).json({ error: "ImageKit not configured" });
+      }
+      const signature = crypto.createHmac("sha1", privateKey).update(token + expire).digest("hex");
+      res.json({
+        token,
+        expire,
+        signature
+      });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to generate signature" });
+    }
+  });
+  const upload = multer({ storage: multer.memoryStorage() });
+  app2.post("/api/imagekit/upload", requireAuth, upload.single("file"), async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: "No file uploaded" });
+      }
+      const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
+      const publicKey = process.env.IMAGEKIT_PUBLIC_KEY;
+      const urlEndpoint = process.env.IMAGEKIT_URL_ENDPOINT;
+      if (!privateKey || !publicKey || !urlEndpoint) {
+        return res.status(500).json({ error: "ImageKit not configured" });
+      }
+      const token = crypto.randomUUID();
+      const expire = (Math.floor(Date.now() / 1e3) + 2400).toString();
+      const signature = crypto.createHmac("sha1", privateKey).update(token + expire).digest("hex");
+      const FormData = (await import("form-data")).default;
+      const formData = new FormData();
+      formData.append("file", req.file.buffer, {
+        filename: req.file.originalname,
+        contentType: req.file.mimetype
+      });
+      formData.append("publicKey", publicKey);
+      formData.append("signature", signature);
+      formData.append("expire", expire);
+      formData.append("token", token);
+      formData.append("fileName", req.file.originalname);
+      console.log("Uploading to ImageKit:", `${urlEndpoint}/api/v1/files/upload`);
+      const uploadResponse = await fetch(`${urlEndpoint}/api/v1/files/upload`, {
+        method: "POST",
+        body: formData,
+        headers: formData.getHeaders()
+      });
+      console.log("ImageKit response status:", uploadResponse.status);
+      if (!uploadResponse.ok) {
+        const errorText = await uploadResponse.text();
+        console.error("ImageKit upload error status:", uploadResponse.status);
+        console.error("ImageKit upload error body:", errorText);
+        console.error("ImageKit upload error headers:", Object.fromEntries(uploadResponse.headers.entries()));
+        return res.status(uploadResponse.status).json({
+          error: "Upload to ImageKit failed",
+          details: errorText,
+          status: uploadResponse.status
+        });
+      }
+      const result = await uploadResponse.json();
+      console.log("ImageKit upload successful:", result.url);
+      res.json({ url: result.url, fileId: result.fileId });
+    } catch (error) {
+      console.error("Upload error:", error);
+      res.status(500).json({
+        error: "Failed to upload image",
+        details: error instanceof Error ? error.message : "Unknown error"
+      });
+    }
+  });
+  const httpServer = createServer(app2);
+  return httpServer;
+}
+
+// server/app.ts
+function log(message, source = "express") {
+  const formattedTime = (/* @__PURE__ */ new Date()).toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true
+  });
+  console.log(`${formattedTime} [${source}] ${message}`);
+}
+var app = express();
+app.use(express.json({
+  verify: (req, _res, buf) => {
+    req.rawBody = buf;
+  }
+}));
+app.use(express.urlencoded({ extended: false }));
+var MemoryStore = memorystore(session);
+app.use(
+  session({
+    name: "desibeats.sid",
+    secret: process.env.JWT_SECRET || "default-secret-change-in-production",
+    resave: false,
+    saveUninitialized: false,
+    store: new MemoryStore({
+      checkPeriod: 864e5
+      // prune expired entries every 24h
+    }),
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      sameSite: "lax",
+      maxAge: 24 * 60 * 60 * 1e3
+      // 24 hours
+    }
+  })
+);
+app.use((req, res, next) => {
+  const start = Date.now();
+  const path2 = req.path;
+  let capturedJsonResponse = void 0;
+  const originalResJson = res.json;
+  res.json = function(bodyJson, ...args) {
+    capturedJsonResponse = bodyJson;
+    return originalResJson.apply(res, [bodyJson, ...args]);
+  };
+  res.on("finish", () => {
+    const duration = Date.now() - start;
+    if (path2.startsWith("/api")) {
+      let logLine = `${req.method} ${path2} ${res.statusCode} in ${duration}ms`;
+      if (capturedJsonResponse) {
+        logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
+      }
+      if (logLine.length > 80) {
+        logLine = logLine.slice(0, 79) + "\u2026";
+      }
+      log(logLine);
+    }
+  });
+  next();
+});
+async function runApp(setup) {
+  const server = await registerRoutes(app);
+  app.use((err, _req, res, _next) => {
+    const status = err.status || err.statusCode || 500;
+    const message = err.message || "Internal Server Error";
+    res.status(status).json({ message });
+    throw err;
+  });
+  await setup(app, server);
+  const port = parseInt(process.env.PORT || "5000", 10);
+  server.listen({
+    port,
+    host: "0.0.0.0",
+    reusePort: true
+  }, () => {
+    log(`serving on port ${port}`);
+  });
+}
+
+// server/index-prod.ts
+async function serveStatic(app2, _server) {
+  const distPath = path.resolve(import.meta.dirname, "public");
+  if (!fs.existsSync(distPath)) {
+    throw new Error(
+      `Could not find the build directory: ${distPath}, make sure to build the client first`
+    );
+  }
+  app2.use(express2.static(distPath));
+  app2.use("*", (_req, res) => {
+    res.sendFile(path.resolve(distPath, "index.html"));
+  });
+}
+(async () => {
+  await runApp(serveStatic);
+})();
+export {
+  serveStatic
+};

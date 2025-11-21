@@ -1,6 +1,6 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./mongo-storage";
+import { storage } from "./storage";
 import { insertOrderSchema, insertCategorySchema, insertMenuItemSchema } from "@shared/schema";
 import { z } from "zod";
 import multer from "multer";

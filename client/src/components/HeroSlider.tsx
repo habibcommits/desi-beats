@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
-import { useQuery } from "@tanstack/react-query";
+import halwaImage from "@assets/halwa_puri_nashta_platter.png";
+import karahiImage from "@assets/chicken_karahi_in_pot.png";
+import bbqImage from "@assets/bbq_chicken_tikka_skewers.png";
 
 interface HeroSlide {
   id: number;
@@ -10,18 +12,38 @@ interface HeroSlide {
   description: string;
   price: string;
   bgGradient: string;
-  imageUrl: string;
+  image: string;
 }
+
+const heroSlides: HeroSlide[] = [
+  {
+    id: 1,
+    title: "Halwa Puri Nashta Deal",
+    description: "2 Puri + 1 Plate Aloo + 1 Cup Halwa",
+    price: "450",
+    bgGradient: "from-amber-600/90 to-orange-800/90",
+    image: halwaImage,
+  },
+  {
+    id: 2,
+    title: "Family BBQ Platter",
+    description: "Malai Boti 6 Seekh + Naan + Raita",
+    price: "2400",
+    bgGradient: "from-red-700/90 to-red-900/90",
+    image: bbqImage,
+  },
+  {
+    id: 3,
+    title: "Desi Murgh Karahi",
+    description: "Full Karahi with 4 Naan",
+    price: "3700",
+    bgGradient: "from-orange-600/90 to-amber-800/90",
+    image: karahiImage,
+  },
+];
 
 export function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  // Fetch hero slider data from API
-  const { data: heroSliderData, isLoading } = useQuery<{ slides: HeroSlide[] }>({
-    queryKey: ['/api/hero-slider'],
-  });
-
-  const heroSlides = heroSliderData?.slides || [];
 
   useEffect(() => {
     if (heroSlides.length === 0) return;
@@ -45,14 +67,6 @@ export function HeroSlider() {
     setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
   };
 
-  if (isLoading || heroSlides.length === 0) {
-    return (
-      <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden bg-gradient-to-br from-black to-amber-950 flex items-center justify-center">
-        <div className="text-white text-xl">Loading...</div>
-      </div>
-    );
-  }
-
   return (
     <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden bg-gradient-to-br from-black to-amber-950">
       <div className="absolute inset-0">
@@ -64,7 +78,7 @@ export function HeroSlider() {
             }`}
           >
             <img 
-              src={slide.imageUrl}
+              src={slide.image}
               alt={slide.title}
               className="absolute inset-0 w-full h-full object-cover"
               data-testid={`img-hero-${index}`}

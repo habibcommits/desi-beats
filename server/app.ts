@@ -7,8 +7,7 @@ import express, {
   NextFunction,
 } from "express";
 import session from "express-session";
-import connectPgSimple from "connect-pg-simple";
-import pg from "pg";
+import MongoStore from "connect-mongo";
 
 import { registerRoutes } from "./routes";
 
@@ -44,11 +43,8 @@ app.use(express.json({
 }));
 app.use(express.urlencoded({ extended: false }));
 
-// Configure session middleware with PostgreSQL store
-const PgStore = connectPgSimple(session);
-const pgPool = new pg.Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+// Configure session middleware with MongoDB store
+const mongoUri = process.env.MONGO_URI || process.env.MONGODB_URI;
 
 app.use(
   session({
@@ -56,11 +52,13 @@ app.use(
     secret: process.env.JWT_SECRET || "default-secret-change-in-production",
     resave: false,
     saveUninitialized: false,
-    store: new PgStore({
-      pool: pgPool,
-      createTableIfMissing: true,
-      pruneSessionInterval: 60 * 15, // prune expired sessions every 15 minutes
-    }),
+    store: mongoUri ? MongoStore.create({
+      mongoUrl: mongoUri,
+      touchAfter: 24 * 3600, // lazy session update
+      crypto: {
+        secret: process.env.JWT_SECRET || "default-secret-change-in-production"
+      }
+    }) : undefined,
     cookie: {
       secure: process.env.NODE_ENV === "production",
       httpOnly: true,

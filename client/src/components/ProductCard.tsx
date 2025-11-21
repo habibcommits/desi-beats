@@ -25,15 +25,15 @@ export function ProductCard({ item }: ProductCardProps) {
 
   return (
     <Card 
-      className="overflow-hidden hover-elevate active-elevate-2 transition-all group"
+      className="overflow-hidden hover-elevate active-elevate-2 transition-all duration-300 group hover:shadow-xl border-2 hover:border-primary/30"
       data-testid={`card-product-${item.id}`}
     >
-      <div className="aspect-[4/3] overflow-hidden bg-muted">
+      <div className="aspect-[4/3] overflow-hidden bg-muted relative">
         {item.image ? (
           <img
             src={item.image}
             alt={item.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             data-testid={`img-product-${item.id}`}
           />
         ) : (
@@ -48,7 +48,7 @@ export function ProductCard({ item }: ProductCardProps) {
         {item.featured === 1 && (
           <Badge 
             variant="destructive" 
-            className="absolute top-3 right-3"
+            className="absolute top-3 right-3 shadow-lg animate-pulse"
             data-testid={`badge-featured-${item.id}`}
           >
             Featured
@@ -89,12 +89,12 @@ export function ProductCard({ item }: ProductCardProps) {
             onClick={handleAddToCart}
             disabled={item.available !== 1}
             size="sm"
-            className="gap-2 min-w-[100px]"
+            className="gap-2 min-w-[100px] bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-primary/30 transition-all duration-300"
             data-testid={`button-add-to-cart-${item.id}`}
           >
             {isAdding ? (
               <>
-                <Check className="h-4 w-4" />
+                <Check className="h-4 w-4 animate-in zoom-in" />
                 Added
               </>
             ) : (

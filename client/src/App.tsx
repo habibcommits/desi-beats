@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CartSidebar } from "@/components/CartSidebar";
+import { FloatingCart } from "@/components/FloatingCart";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { useState } from "react";
 import HomePage from "@/pages/HomePage";
@@ -56,6 +57,7 @@ function Router({ onCartClick }: { onCartClick: () => void }) {
             </Switch>
           </main>
           <Footer />
+          <FloatingCart />
         </div>
       </Route>
     </Switch>

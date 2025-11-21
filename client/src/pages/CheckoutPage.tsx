@@ -21,14 +21,14 @@ export default function CheckoutPage() {
   const { toast } = useToast();
   const totalPrice = getTotalPrice();
 
-  const form = useForm<InsertOrder>({
+  const form = useForm<any>({
     resolver: zodResolver(insertOrderSchema),
     defaultValues: {
       customerName: "",
       customerPhone: "",
       customerAddress: "",
       deliveryType: "delivery",
-      totalAmount: "0",
+      totalAmount: 0,
       status: "pending",
       items: "",
     },

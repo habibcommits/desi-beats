@@ -25,7 +25,7 @@ export const insertOrderSchema = z.object({
   customerPhone: z.string().min(10, "Phone number must be at least 10 digits"),
   customerAddress: z.string().optional(),
   deliveryType: z.enum(["delivery", "pickup"]),
-  totalAmount: z.number().positive("Total amount must be positive"),
+  totalAmount: z.union([z.number(), z.string()]).pipe(z.coerce.number().positive("Total amount must be positive")),
   status: z.string().default('pending'),
   items: z.string(),
 });

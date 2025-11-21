@@ -7,12 +7,16 @@ export interface IStorage {
   getCategoryById(id: string): Promise<Category | undefined>;
   getCategoryBySlug(slug: string): Promise<Category | undefined>;
   createCategory(category: InsertCategory): Promise<Category>;
+  updateCategory(id: string, category: Partial<InsertCategory>): Promise<Category | undefined>;
+  deleteCategory(id: string): Promise<boolean>;
 
   // Menu Items
   getMenuItems(): Promise<MenuItem[]>;
   getMenuItemById(id: string): Promise<MenuItem | undefined>;
   getMenuItemsByCategory(categoryId: string): Promise<MenuItem[]>;
   createMenuItem(menuItem: InsertMenuItem): Promise<MenuItem>;
+  updateMenuItem(id: string, menuItem: Partial<InsertMenuItem>): Promise<MenuItem | undefined>;
+  deleteMenuItem(id: string): Promise<boolean>;
 
   // Orders
   getOrders(): Promise<Order[]>;
@@ -222,6 +226,18 @@ export class MemStorage implements IStorage {
     return category;
   }
 
+  async updateCategory(id: string, updateData: Partial<InsertCategory>): Promise<Category | undefined> {
+    const category = this.categories.get(id);
+    if (!category) return undefined;
+    const updated = { ...category, ...updateData };
+    this.categories.set(id, updated);
+    return updated;
+  }
+
+  async deleteCategory(id: string): Promise<boolean> {
+    return this.categories.delete(id);
+  }
+
   // Menu Items
   async getMenuItems(): Promise<MenuItem[]> {
     return Array.from(this.menuItems.values()).sort((a, b) => a.order - b.order);
@@ -242,6 +258,18 @@ export class MemStorage implements IStorage {
     const menuItem: MenuItem = { ...insertMenuItem, id };
     this.menuItems.set(id, menuItem);
     return menuItem;
+  }
+
+  async updateMenuItem(id: string, updateData: Partial<InsertMenuItem>): Promise<MenuItem | undefined> {
+    const menuItem = this.menuItems.get(id);
+    if (!menuItem) return undefined;
+    const updated = { ...menuItem, ...updateData };
+    this.menuItems.set(id, updated);
+    return updated;
+  }
+
+  async deleteMenuItem(id: string): Promise<boolean> {
+    return this.menuItems.delete(id);
   }
 
   // Orders

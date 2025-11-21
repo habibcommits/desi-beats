@@ -41,6 +41,12 @@ export const getQueryFn: <T>(options: {
     return await res.json();
   };
 
+const handle401Error = (error: any) => {
+  if (error.message && error.message.includes("401:")) {
+    window.location.href = "/admin/login";
+  }
+};
+
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -49,9 +55,11 @@ export const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
       staleTime: Infinity,
       retry: false,
+      onError: handle401Error,
     },
     mutations: {
       retry: false,
+      onError: handle401Error,
     },
   },
 });

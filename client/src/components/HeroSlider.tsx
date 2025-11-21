@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
+import karahiImage from "@assets/Desi Murgh Karahi_1763744959845.jpg";
 
 const heroSlides = [
   {
@@ -26,7 +27,7 @@ const heroSlides = [
     description: "Full Karahi with 4 Naan",
     price: "3700",
     bgGradient: "from-orange-600/90 to-amber-800/90",
-    image: "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=1200&h=600&fit=crop",
+    image: karahiImage,
   },
 ];
 

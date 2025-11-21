@@ -7,7 +7,8 @@ import express, {
   NextFunction,
 } from "express";
 import session from "express-session";
-import memorystore from "memorystore";
+import connectPgSimple from "connect-pg-simple";
+import pg from "pg";
 
 import { registerRoutes } from "./routes";
 
@@ -43,16 +44,22 @@ app.use(express.json({
 }));
 app.use(express.urlencoded({ extended: false }));
 
-// Configure session middleware
-const MemoryStore = memorystore(session);
+// Configure session middleware with PostgreSQL store
+const PgStore = connectPgSimple(session);
+const pgPool = new pg.Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+
 app.use(
   session({
     name: "desibeats.sid",
     secret: process.env.JWT_SECRET || "default-secret-change-in-production",
     resave: false,
     saveUninitialized: false,
-    store: new MemoryStore({
-      checkPeriod: 86400000, // prune expired entries every 24h
+    store: new PgStore({
+      pool: pgPool,
+      createTableIfMissing: true,
+      pruneSessionInterval: 60 * 15, // prune expired sessions every 15 minutes
     }),
     cookie: {
       secure: process.env.NODE_ENV === "production",

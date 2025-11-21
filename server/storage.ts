@@ -78,10 +78,10 @@ export class MemStorage implements IStorage {
     // Seed menu items based on actual DESI Beats Café menu
     const menuItems: InsertMenuItem[] = [
       // Breakfast
-      { categoryId: getCategoryId("breakfast"), name: "Whole Wheat Paratha", price: "80", description: "Healthy whole wheat paratha", order: 1, available: 1, featured: 0, image: "/attached_assets/generated_images/chicken_paratha_breakfast_plate.png" },
+      { categoryId: getCategoryId("breakfast"), name: "Whole Wheat Paratha", price: "80", description: "Healthy whole wheat paratha", order: 1, available: 1, featured: 0, image: "/chicken_paratha_breakfast_plate.png" },
       { categoryId: getCategoryId("breakfast"), name: "Allu Paratha", price: "150", description: "Potato stuffed paratha", order: 2, available: 1, featured: 0 },
       { categoryId: getCategoryId("breakfast"), name: "Allu Cheese Paratha", price: "220", description: "Potato and cheese paratha", order: 3, available: 1, featured: 0 },
-      { categoryId: getCategoryId("breakfast"), name: "Chicken Paratha", price: "250", description: "Chicken stuffed paratha", order: 4, available: 1, featured: 1, image: "/attached_assets/generated_images/chicken_paratha_breakfast_plate.png" },
+      { categoryId: getCategoryId("breakfast"), name: "Chicken Paratha", price: "250", description: "Chicken stuffed paratha", order: 4, available: 1, featured: 1, image: "/chicken_paratha_breakfast_plate.png" },
       { categoryId: getCategoryId("breakfast"), name: "Chicken Cheese Paratha", price: "300", description: "Chicken and cheese paratha", order: 5, available: 1, featured: 0 },
       { categoryId: getCategoryId("breakfast"), name: "Fry Egg", price: "80", description: "Fried egg", order: 6, available: 1, featured: 0 },
       { categoryId: getCategoryId("breakfast"), name: "Omelette", price: "90", description: "Classic omelette", order: 7, available: 1, featured: 0 },
@@ -93,7 +93,7 @@ export class MemStorage implements IStorage {
       { categoryId: getCategoryId("halwa-puri"), name: "Aloo Bhujia", price: "250", description: "Spiced potato curry", order: 3, available: 1, featured: 0 },
       { categoryId: getCategoryId("halwa-puri"), name: "Chanay", price: "300", description: "Chickpea curry", order: 4, available: 1, featured: 0 },
       { categoryId: getCategoryId("halwa-puri"), name: "Desi Ghee Paratha", price: "180", description: "Paratha with pure desi ghee", order: 5, available: 1, featured: 0 },
-      { categoryId: getCategoryId("halwa-puri"), name: "Halwa Puri Nashta Deal", price: "450", description: "2 Puri + Plate Aloo + Cup Halwa", order: 6, available: 1, featured: 1, image: "/attached_assets/generated_images/halwa_puri_nashta_platter.png" },
+      { categoryId: getCategoryId("halwa-puri"), name: "Halwa Puri Nashta Deal", price: "450", description: "2 Puri + Plate Aloo + Cup Halwa", order: 6, available: 1, featured: 1, image: "/halwa_puri_nashta_platter.png" },
 
       // Main Course
       { categoryId: getCategoryId("main-course"), name: "Beef Nehari", price: "700", description: "Slow-cooked beef curry", order: 1, available: 1, featured: 1 },
@@ -107,8 +107,8 @@ export class MemStorage implements IStorage {
       { categoryId: getCategoryId("main-course"), name: "Chicken Madrasi", price: "950", description: "Spicy South Indian style chicken", order: 9, available: 1, featured: 0 },
 
       // Karahi
-      { categoryId: getCategoryId("karahi"), name: "Chicken Karahi Half", price: "1150", description: "Half portion chicken karahi", order: 1, available: 1, featured: 1, image: "/attached_assets/generated_images/chicken_karahi_in_pot.png" },
-      { categoryId: getCategoryId("karahi"), name: "Chicken Karahi Full", price: "2250", description: "Full portion chicken karahi", order: 2, available: 1, featured: 1, image: "/attached_assets/generated_images/chicken_karahi_in_pot.png" },
+      { categoryId: getCategoryId("karahi"), name: "Chicken Karahi Half", price: "1150", description: "Half portion chicken karahi", order: 1, available: 1, featured: 1, image: "/chicken_karahi_in_pot.png" },
+      { categoryId: getCategoryId("karahi"), name: "Chicken Karahi Full", price: "2250", description: "Full portion chicken karahi", order: 2, available: 1, featured: 1, image: "/chicken_karahi_in_pot.png" },
       { categoryId: getCategoryId("karahi"), name: "Chicken Handi Half", price: "1490", description: "Half portion chicken handi", order: 3, available: 1, featured: 0 },
       { categoryId: getCategoryId("karahi"), name: "Chicken Handi Full", price: "2790", description: "Full portion chicken handi", order: 4, available: 1, featured: 0 },
       { categoryId: getCategoryId("karahi"), name: "Desi Murgh Karahi Half", price: "1900", description: "Half portion desi chicken karahi", order: 5, available: 1, featured: 0 },
@@ -119,8 +119,8 @@ export class MemStorage implements IStorage {
       // Rice
       { categoryId: getCategoryId("rice"), name: "Daal Chawal", price: "490", description: "Lentils with rice", order: 1, available: 1, featured: 0 },
       { categoryId: getCategoryId("rice"), name: "Plain Rice", price: "300", description: "Steamed basmati rice", order: 2, available: 1, featured: 0 },
-      { categoryId: getCategoryId("rice"), name: "Chicken Pulao", price: "480", description: "Chicken pulao rice", order: 3, available: 1, featured: 0, image: "/attached_assets/generated_images/chicken_biryani_bowl.png" },
-      { categoryId: getCategoryId("rice"), name: "Chicken Bariyani", price: "590", description: "Spiced chicken biryani", order: 4, available: 1, featured: 1, image: "/attached_assets/generated_images/chicken_biryani_bowl.png" },
+      { categoryId: getCategoryId("rice"), name: "Chicken Pulao", price: "480", description: "Chicken pulao rice", order: 3, available: 1, featured: 0, image: "/chicken_biryani_bowl.png" },
+      { categoryId: getCategoryId("rice"), name: "Chicken Bariyani", price: "590", description: "Spiced chicken biryani", order: 4, available: 1, featured: 1, image: "/chicken_biryani_bowl.png" },
       { categoryId: getCategoryId("rice"), name: "Chicken Fried Rice", price: "690", description: "Fried rice with chicken", order: 5, available: 1, featured: 0 },
       { categoryId: getCategoryId("rice"), name: "Egg Fried Rice", price: "590", description: "Fried rice with egg", order: 6, available: 1, featured: 0 },
       { categoryId: getCategoryId("rice"), name: "Plain Bariyani", price: "350", description: "Plain biryani rice", order: 7, available: 1, featured: 0 },
@@ -131,21 +131,21 @@ export class MemStorage implements IStorage {
       { categoryId: getCategoryId("fish"), name: "Finger Fried Fish 1kg", price: "2350", description: "Fish fingers fried", order: 3, available: 1, featured: 0 },
 
       // BBQ
-      { categoryId: getCategoryId("bbq"), name: "Chicken Tikka Boti", price: "200", description: "Chicken tikka pieces", order: 1, available: 1, featured: 1, image: "/attached_assets/generated_images/bbq_chicken_tikka_skewers.png" },
+      { categoryId: getCategoryId("bbq"), name: "Chicken Tikka Boti", price: "200", description: "Chicken tikka pieces", order: 1, available: 1, featured: 1, image: "/bbq_chicken_tikka_skewers.png" },
       { categoryId: getCategoryId("bbq"), name: "Chicken Malia Boti", price: "400", description: "Creamy chicken boti", order: 2, available: 1, featured: 0 },
       { categoryId: getCategoryId("bbq"), name: "Chicken Tikka Pice Leg", price: "370", description: "Chicken leg tikka", order: 3, available: 1, featured: 0 },
       { categoryId: getCategoryId("bbq"), name: "Chicken Tikka Pice Chest", price: "380", description: "Chicken breast tikka", order: 4, available: 1, featured: 0 },
       { categoryId: getCategoryId("bbq"), name: "Chicken Tikka Per Plate", price: "400", description: "Full plate chicken tikka", order: 5, available: 1, featured: 0 },
-      { categoryId: getCategoryId("bbq"), name: "Malai Boti 6 Seekh", price: "2400", description: "6 seekh malai boti", order: 6, available: 1, featured: 1, image: "/attached_assets/generated_images/bbq_chicken_tikka_skewers.png" },
+      { categoryId: getCategoryId("bbq"), name: "Malai Boti 6 Seekh", price: "2400", description: "6 seekh malai boti", order: 6, available: 1, featured: 1, image: "/bbq_chicken_tikka_skewers.png" },
 
       // Burgers
-      { categoryId: getCategoryId("burgers"), name: "Zinger Burger with Fries", price: "350", description: "Crispy zinger burger with fries", order: 1, available: 1, featured: 1, image: "/attached_assets/generated_images/zinger_chicken_burger.png" },
+      { categoryId: getCategoryId("burgers"), name: "Zinger Burger with Fries", price: "350", description: "Crispy zinger burger with fries", order: 1, available: 1, featured: 1, image: "/zinger_chicken_burger.png" },
       { categoryId: getCategoryId("burgers"), name: "Beef Smash Burger with Fries", price: "400", description: "Smashed beef burger with fries", order: 2, available: 1, featured: 0 },
       { categoryId: getCategoryId("burgers"), name: "Crispy Chicken Petty Burger with Fries", price: "350", description: "Chicken patty burger with fries", order: 3, available: 1, featured: 0 },
       { categoryId: getCategoryId("burgers"), name: "Anda Shami Burger", price: "220", description: "Egg and shami kabab burger", order: 4, available: 1, featured: 0 },
 
       // Shawarma
-      { categoryId: getCategoryId("shawarma"), name: "Chicken Shawarma", price: "220", description: "Chicken shawarma wrap", order: 1, available: 1, featured: 1, image: "/attached_assets/generated_images/chicken_shawarma_wrap.png" },
+      { categoryId: getCategoryId("shawarma"), name: "Chicken Shawarma", price: "220", description: "Chicken shawarma wrap", order: 1, available: 1, featured: 1, image: "/chicken_shawarma_wrap.png" },
       { categoryId: getCategoryId("shawarma"), name: "Chicken Cheese Shawarma", price: "300", description: "Chicken shawarma with cheese", order: 2, available: 1, featured: 0 },
       { categoryId: getCategoryId("shawarma"), name: "Zinger Shawarma", price: "300", description: "Zinger shawarma wrap", order: 3, available: 1, featured: 0 },
       { categoryId: getCategoryId("shawarma"), name: "Shawarma Platter", price: "480", description: "Shawarma platter with sides", order: 4, available: 1, featured: 0 },
@@ -156,18 +156,18 @@ export class MemStorage implements IStorage {
       { categoryId: getCategoryId("roll-paratha"), name: "Zinger Pratha Roll", price: "380", description: "Zinger paratha roll", order: 3, available: 1, featured: 0 },
 
       // Fried Chicken
-      { categoryId: getCategoryId("fried-chicken"), name: "Chicken Hot Shots", price: "450", description: "Spicy chicken shots (Half)", order: 1, available: 1, featured: 1, image: "/attached_assets/generated_images/crispy_fried_chicken.png" },
+      { categoryId: getCategoryId("fried-chicken"), name: "Chicken Hot Shots", price: "450", description: "Spicy chicken shots (Half)", order: 1, available: 1, featured: 1, image: "/crispy_fried_chicken.png" },
       { categoryId: getCategoryId("fried-chicken"), name: "Chicken Fried 2 Piece with Fries", price: "499", description: "2 piece fried chicken with fries", order: 2, available: 1, featured: 0 },
       { categoryId: getCategoryId("fried-chicken"), name: "Chicken Fried 6 Piece with Fries", price: "1250", description: "6 piece fried chicken with fries", order: 3, available: 1, featured: 0 },
       { categoryId: getCategoryId("fried-chicken"), name: "Nuggets 6 Pcs with Fries", price: "499", description: "6 chicken nuggets with fries", order: 4, available: 1, featured: 0 },
 
       // Hot Wings
-      { categoryId: getCategoryId("hot-wings"), name: "Masala Hot Wings 6 pcs", price: "650", description: "Spicy masala wings", order: 1, available: 1, featured: 1, image: "/attached_assets/generated_images/spicy_buffalo_hot_wings.png" },
+      { categoryId: getCategoryId("hot-wings"), name: "Masala Hot Wings 6 pcs", price: "650", description: "Spicy masala wings", order: 1, available: 1, featured: 1, image: "/spicy_buffalo_hot_wings.png" },
       { categoryId: getCategoryId("hot-wings"), name: "Sesame Seed Hot Wings 6 pcs", price: "780", description: "Sesame coated wings", order: 2, available: 1, featured: 0 },
       { categoryId: getCategoryId("hot-wings"), name: "Garlic B.B.Q Wings 6 pce", price: "850", description: "Garlic BBQ wings", order: 3, available: 1, featured: 0 },
 
       // Fries & Refreshments
-      { categoryId: getCategoryId("fries"), name: "Plain Fries", price: "200", description: "Regular portion", order: 1, available: 1, featured: 0, image: "/attached_assets/generated_images/golden_french_fries.png" },
+      { categoryId: getCategoryId("fries"), name: "Plain Fries", price: "200", description: "Regular portion", order: 1, available: 1, featured: 0, image: "/golden_french_fries.png" },
       { categoryId: getCategoryId("fries"), name: "Masala Fries", price: "220", description: "Spiced fries", order: 2, available: 1, featured: 0 },
       { categoryId: getCategoryId("fries"), name: "Garlic Mayo Fries", price: "250", description: "Fries with garlic mayo", order: 3, available: 1, featured: 0 },
       { categoryId: getCategoryId("fries"), name: "Sesame Seed Fries", price: "250", description: "Fries with sesame", order: 4, available: 1, featured: 0 },

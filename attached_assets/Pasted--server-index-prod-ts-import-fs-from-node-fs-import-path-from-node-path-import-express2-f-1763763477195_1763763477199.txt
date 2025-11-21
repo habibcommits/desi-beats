@@ -1,0 +1,761 @@
+// server/index-prod.ts
+import fs from "node:fs";
+import path from "node:path";
+import express2 from "express";
+
+// server/app.ts
+import express from "express";
+import session from "express-session";
+import memorystore from "memorystore";
+
+// server/routes.ts
+import { createServer } from "http";
+
+// server/storage.ts
+import { randomUUID } from "crypto";
+var MemStorage = class {
+  categories;
+  menuItems;
+  orders;
+  constructor() {
+    this.categories = /* @__PURE__ */ new Map();
+    this.menuItems = /* @__PURE__ */ new Map();
+    this.orders = /* @__PURE__ */ new Map();
+    this.seedData();
+  }
+  seedData() {
+    const categoryData = [
+      { name: "Breakfast", slug: "breakfast", description: "Traditional Pakistani breakfast items", order: 1 },
+      { name: "Halwa Puri Nashta", slug: "halwa-puri", description: "Authentic halwa puri breakfast specials", order: 2 },
+      { name: "Main Course", slug: "main-course", description: "Traditional curries and gravies", order: 3 },
+      { name: "Karahi", slug: "karahi", description: "Sizzling karahi specialties", order: 4 },
+      { name: "Rice", slug: "rice", description: "Fragrant rice dishes and biryani", order: 5 },
+      { name: "Fish", slug: "fish", description: "Fresh fish preparations", order: 6 },
+      { name: "BBQ", slug: "bbq", description: "Grilled and barbecue specialties", order: 7 },
+      { name: "Burgers", slug: "burgers", description: "Juicy burgers and sandwiches", order: 8 },
+      { name: "Shawarma", slug: "shawarma", description: "Middle Eastern wraps", order: 9 },
+      { name: "Roll Paratha", slug: "roll-paratha", description: "Rolled parathas with fillings", order: 10 },
+      { name: "Fried Chicken", slug: "fried-chicken", description: "Crispy fried chicken", order: 11 },
+      { name: "Hot Wings", slug: "hot-wings", description: "Spicy chicken wings", order: 12 },
+      { name: "Fries & Refreshments", slug: "fries", description: "Sides and snacks", order: 13 },
+      { name: "Salad", slug: "salad", description: "Fresh salads", order: 14 },
+      { name: "Tandoor", slug: "tandoor", description: "Fresh tandoori breads", order: 15 },
+      { name: "Drinks", slug: "drinks", description: "Beverages and refreshments", order: 16 }
+    ];
+    const categoryIdMap = /* @__PURE__ */ new Map();
+    categoryData.forEach((cat) => {
+      const id = randomUUID();
+      this.categories.set(id, { ...cat, id, image: null });
+      categoryIdMap.set(cat.slug, id);
+    });
+    const getCategoryId = (slug) => {
+      const id = categoryIdMap.get(slug);
+      if (!id) {
+        throw new Error(`Category slug "${slug}" not found during seeding`);
+      }
+      return id;
+    };
+    const menuItems = [
+      // Breakfast
+      { categoryId: getCategoryId("breakfast"), name: "Whole Wheat Paratha", price: "80", description: "Healthy whole wheat paratha", order: 1, available: 1, featured: 0, image: "/attached_assets/generated_images/chicken_paratha_breakfast_plate.png" },
+      { categoryId: getCategoryId("breakfast"), name: "Allu Paratha", price: "150", description: "Potato stuffed paratha", order: 2, available: 1, featured: 0 },
+      { categoryId: getCategoryId("breakfast"), name: "Allu Cheese Paratha", price: "220", description: "Potato and cheese paratha", order: 3, available: 1, featured: 0 },
+      { categoryId: getCategoryId("breakfast"), name: "Chicken Paratha", price: "250", description: "Chicken stuffed paratha", order: 4, available: 1, featured: 1, image: "/attached_assets/generated_images/chicken_paratha_breakfast_plate.png" },
+      { categoryId: getCategoryId("breakfast"), name: "Chicken Cheese Paratha", price: "300", description: "Chicken and cheese paratha", order: 5, available: 1, featured: 0 },
+      { categoryId: getCategoryId("breakfast"), name: "Fry Egg", price: "80", description: "Fried egg", order: 6, available: 1, featured: 0 },
+      { categoryId: getCategoryId("breakfast"), name: "Omelette", price: "90", description: "Classic omelette", order: 7, available: 1, featured: 0 },
+      { categoryId: getCategoryId("breakfast"), name: "Cheese Omelette", price: "150", description: "Cheese omelette", order: 8, available: 1, featured: 0 },
+      // Halwa Puri Nashta
+      { categoryId: getCategoryId("halwa-puri"), name: "Puri", price: "70", description: "Single puri", order: 1, available: 1, featured: 0 },
+      { categoryId: getCategoryId("halwa-puri"), name: "Halwa 250g", price: "220", description: "Sweet halwa 250g", order: 2, available: 1, featured: 0 },
+      { categoryId: getCategoryId("halwa-puri"), name: "Aloo Bhujia", price: "250", description: "Spiced potato curry", order: 3, available: 1, featured: 0 },
+      { categoryId: getCategoryId("halwa-puri"), name: "Chanay", price: "300", description: "Chickpea curry", order: 4, available: 1, featured: 0 },
+      { categoryId: getCategoryId("halwa-puri"), name: "Desi Ghee Paratha", price: "180", description: "Paratha with pure desi ghee", order: 5, available: 1, featured: 0 },
+      { categoryId: getCategoryId("halwa-puri"), name: "Halwa Puri Nashta Deal", price: "450", description: "2 Puri + Plate Aloo + Cup Halwa", order: 6, available: 1, featured: 1, image: "/attached_assets/generated_images/halwa_puri_nashta_platter.png" },
+      // Main Course
+      { categoryId: getCategoryId("main-course"), name: "Beef Nehari", price: "700", description: "Slow-cooked beef curry", order: 1, available: 1, featured: 1 },
+      { categoryId: getCategoryId("main-course"), name: "Lahori Chanay", price: "300", description: "Lahore-style chickpeas", order: 2, available: 1, featured: 0 },
+      { categoryId: getCategoryId("main-course"), name: "Special Daal", price: "350", description: "Mixed lentil curry", order: 3, available: 1, featured: 0 },
+      { categoryId: getCategoryId("main-course"), name: "Special Sabzi", price: "350", description: "Mixed vegetable curry", order: 4, available: 1, featured: 0 },
+      { categoryId: getCategoryId("main-course"), name: "Chicken Qorma", price: "450", description: "Creamy chicken curry", order: 5, available: 1, featured: 0 },
+      { categoryId: getCategoryId("main-course"), name: "Chicken Haleem", price: "480", description: "Slow-cooked chicken & lentils", order: 6, available: 1, featured: 0 },
+      { categoryId: getCategoryId("main-course"), name: "Chicken Qeema", price: "480", description: "Minced chicken curry", order: 7, available: 1, featured: 0 },
+      { categoryId: getCategoryId("main-course"), name: "Chicken Jalfarezi", price: "590", description: "Chicken with vegetables", order: 8, available: 1, featured: 0 },
+      { categoryId: getCategoryId("main-course"), name: "Chicken Madrasi", price: "950", description: "Spicy South Indian style chicken", order: 9, available: 1, featured: 0 },
+      // Karahi
+      { categoryId: getCategoryId("karahi"), name: "Chicken Karahi Half", price: "1150", description: "Half portion chicken karahi", order: 1, available: 1, featured: 1, image: "/attached_assets/generated_images/chicken_karahi_in_pot.png" },
+      { categoryId: getCategoryId("karahi"), name: "Chicken Karahi Full", price: "2250", description: "Full portion chicken karahi", order: 2, available: 1, featured: 1, image: "/attached_assets/generated_images/chicken_karahi_in_pot.png" },
+      { categoryId: getCategoryId("karahi"), name: "Chicken Handi Half", price: "1490", description: "Half portion chicken handi", order: 3, available: 1, featured: 0 },
+      { categoryId: getCategoryId("karahi"), name: "Chicken Handi Full", price: "2790", description: "Full portion chicken handi", order: 4, available: 1, featured: 0 },
+      { categoryId: getCategoryId("karahi"), name: "Desi Murgh Karahi Half", price: "1900", description: "Half portion desi chicken karahi", order: 5, available: 1, featured: 0 },
+      { categoryId: getCategoryId("karahi"), name: "Desi Murgh Karahi Full", price: "3700", description: "Full portion desi chicken karahi", order: 6, available: 1, featured: 0 },
+      { categoryId: getCategoryId("karahi"), name: "Mutton Karahi Half", price: "1950", description: "Half portion mutton karahi", order: 7, available: 1, featured: 0 },
+      { categoryId: getCategoryId("karahi"), name: "Mutton Karahi Full", price: "3800", description: "Full portion mutton karahi", order: 8, available: 1, featured: 0 },
+      // Rice
+      { categoryId: getCategoryId("rice"), name: "Daal Chawal", price: "490", description: "Lentils with rice", order: 1, available: 1, featured: 0 },
+      { categoryId: getCategoryId("rice"), name: "Plain Rice", price: "300", description: "Steamed basmati rice", order: 2, available: 1, featured: 0 },
+      { categoryId: getCategoryId("rice"), name: "Chicken Pulao", price: "480", description: "Chicken pulao rice", order: 3, available: 1, featured: 0, image: "/attached_assets/generated_images/chicken_biryani_bowl.png" },
+      { categoryId: getCategoryId("rice"), name: "Chicken Bariyani", price: "590", description: "Spiced chicken biryani", order: 4, available: 1, featured: 1, image: "/attached_assets/generated_images/chicken_biryani_bowl.png" },
+      { categoryId: getCategoryId("rice"), name: "Chicken Fried Rice", price: "690", description: "Fried rice with chicken", order: 5, available: 1, featured: 0 },
+      { categoryId: getCategoryId("rice"), name: "Egg Fried Rice", price: "590", description: "Fried rice with egg", order: 6, available: 1, featured: 0 },
+      { categoryId: getCategoryId("rice"), name: "Plain Bariyani", price: "350", description: "Plain biryani rice", order: 7, available: 1, featured: 0 },
+      // Fish
+      { categoryId: getCategoryId("fish"), name: "Rahu Grilled Fish 1kg", price: "1850", description: "Grilled rahu fish", order: 1, available: 1, featured: 0 },
+      { categoryId: getCategoryId("fish"), name: "Rahu Fried Fish 1kg", price: "2000", description: "Fried rahu fish", order: 2, available: 1, featured: 0 },
+      { categoryId: getCategoryId("fish"), name: "Finger Fried Fish 1kg", price: "2350", description: "Fish fingers fried", order: 3, available: 1, featured: 0 },
+      // BBQ
+      { categoryId: getCategoryId("bbq"), name: "Chicken Tikka Boti", price: "200", description: "Chicken tikka pieces", order: 1, available: 1, featured: 1, image: "/attached_assets/generated_images/bbq_chicken_tikka_skewers.png" },
+      { categoryId: getCategoryId("bbq"), name: "Chicken Malia Boti", price: "400", description: "Creamy chicken boti", order: 2, available: 1, featured: 0 },
+      { categoryId: getCategoryId("bbq"), name: "Chicken Tikka Pice Leg", price: "370", description: "Chicken leg tikka", order: 3, available: 1, featured: 0 },
+      { categoryId: getCategoryId("bbq"), name: "Chicken Tikka Pice Chest", price: "380", description: "Chicken breast tikka", order: 4, available: 1, featured: 0 },
+      { categoryId: getCategoryId("bbq"), name: "Chicken Tikka Per Plate", price: "400", description: "Full plate chicken tikka", order: 5, available: 1, featured: 0 },
+      { categoryId: getCategoryId("bbq"), name: "Malai Boti 6 Seekh", price: "2400", description: "6 seekh malai boti", order: 6, available: 1, featured: 1, image: "/attached_assets/generated_images/bbq_chicken_tikka_skewers.png" },
+      // Burgers
+      { categoryId: getCategoryId("burgers"), name: "Zinger Burger with Fries", price: "350", description: "Crispy zinger burger with fries", order: 1, available: 1, featured: 1, image: "/attached_assets/generated_images/zinger_chicken_burger.png" },
+      { categoryId: getCategoryId("burgers"), name: "Beef Smash Burger with Fries", price: "400", description: "Smashed beef burger with fries", order: 2, available: 1, featured: 0 },
+      { categoryId: getCategoryId("burgers"), name: "Crispy Chicken Petty Burger with Fries", price: "350", description: "Chicken patty burger with fries", order: 3, available: 1, featured: 0 },
+      { categoryId: getCategoryId("burgers"), name: "Anda Shami Burger", price: "220", description: "Egg and shami kabab burger", order: 4, available: 1, featured: 0 },
+      // Shawarma
+      { categoryId: getCategoryId("shawarma"), name: "Chicken Shawarma", price: "220", description: "Chicken shawarma wrap", order: 1, available: 1, featured: 1, image: "/attached_assets/generated_images/chicken_shawarma_wrap.png" },
+      { categoryId: getCategoryId("shawarma"), name: "Chicken Cheese Shawarma", price: "300", description: "Chicken shawarma with cheese", order: 2, available: 1, featured: 0 },
+      { categoryId: getCategoryId("shawarma"), name: "Zinger Shawarma", price: "300", description: "Zinger shawarma wrap", order: 3, available: 1, featured: 0 },
+      { categoryId: getCategoryId("shawarma"), name: "Shawarma Platter", price: "480", description: "Shawarma platter with sides", order: 4, available: 1, featured: 0 },
+      // Roll Paratha
+      { categoryId: getCategoryId("roll-paratha"), name: "Garlic Mayo Roll", price: "350", description: "Garlic mayo chicken roll", order: 1, available: 1, featured: 0 },
+      { categoryId: getCategoryId("roll-paratha"), name: "B.B.Q Pratha Roll", price: "400", description: "BBQ paratha roll", order: 2, available: 1, featured: 0 },
+      { categoryId: getCategoryId("roll-paratha"), name: "Zinger Pratha Roll", price: "380", description: "Zinger paratha roll", order: 3, available: 1, featured: 0 },
+      // Fried Chicken
+      { categoryId: getCategoryId("fried-chicken"), name: "Chicken Hot Shots", price: "450", description: "Spicy chicken shots (Half)", order: 1, available: 1, featured: 1, image: "/attached_assets/generated_images/crispy_fried_chicken.png" },
+      { categoryId: getCategoryId("fried-chicken"), name: "Chicken Fried 2 Piece with Fries", price: "499", description: "2 piece fried chicken with fries", order: 2, available: 1, featured: 0 },
+      { categoryId: getCategoryId("fried-chicken"), name: "Chicken Fried 6 Piece with Fries", price: "1250", description: "6 piece fried chicken with fries", order: 3, available: 1, featured: 0 },
+      { categoryId: getCategoryId("fried-chicken"), name: "Nuggets 6 Pcs with Fries", price: "499", description: "6 chicken nuggets with fries", order: 4, available: 1, featured: 0 },
+      // Hot Wings
+      { categoryId: getCategoryId("hot-wings"), name: "Masala Hot Wings 6 pcs", price: "650", description: "Spicy masala wings", order: 1, available: 1, featured: 1, image: "/attached_assets/generated_images/spicy_buffalo_hot_wings.png" },
+      { categoryId: getCategoryId("hot-wings"), name: "Sesame Seed Hot Wings 6 pcs", price: "780", description: "Sesame coated wings", order: 2, available: 1, featured: 0 },
+      { categoryId: getCategoryId("hot-wings"), name: "Garlic B.B.Q Wings 6 pce", price: "850", description: "Garlic BBQ wings", order: 3, available: 1, featured: 0 },
+      // Fries & Refreshments
+      { categoryId: getCategoryId("fries"), name: "Plain Fries", price: "200", description: "Regular portion", order: 1, available: 1, featured: 0, image: "/attached_assets/generated_images/golden_french_fries.png" },
+      { categoryId: getCategoryId("fries"), name: "Masala Fries", price: "220", description: "Spiced fries", order: 2, available: 1, featured: 0 },
+      { categoryId: getCategoryId("fries"), name: "Garlic Mayo Fries", price: "250", description: "Fries with garlic mayo", order: 3, available: 1, featured: 0 },
+      { categoryId: getCategoryId("fries"), name: "Sesame Seed Fries", price: "250", description: "Fries with sesame", order: 4, available: 1, featured: 0 },
+      { categoryId: getCategoryId("fries"), name: "Samosa Plate", price: "180", description: "Crispy samosas", order: 5, available: 1, featured: 0 },
+      { categoryId: getCategoryId("fries"), name: "Pakoray 250g", price: "220", description: "Vegetable pakoras", order: 6, available: 1, featured: 0 },
+      { categoryId: getCategoryId("fries"), name: "Chicken Pakoray 250g", price: "400", description: "Chicken pakoras", order: 7, available: 1, featured: 0 },
+      // Salad
+      { categoryId: getCategoryId("salad"), name: "Green Salad", price: "100", description: "Fresh green salad", order: 1, available: 1, featured: 0 },
+      { categoryId: getCategoryId("salad"), name: "Mint Raita", price: "120", description: "Yogurt with mint", order: 2, available: 1, featured: 0 },
+      { categoryId: getCategoryId("salad"), name: "Mint Sauce", price: "140", description: "Mint chutney", order: 3, available: 1, featured: 0 },
+      // Tandoor
+      { categoryId: getCategoryId("tandoor"), name: "Roti", price: "25", description: "Tandoori roti", order: 1, available: 1, featured: 0 },
+      { categoryId: getCategoryId("tandoor"), name: "Naan", price: "30", description: "Tandoori naan", order: 2, available: 1, featured: 0 },
+      { categoryId: getCategoryId("tandoor"), name: "Chapati", price: "70", description: "Soft chapati", order: 3, available: 1, featured: 0 },
+      { categoryId: getCategoryId("tandoor"), name: "Tawa Paratha", price: "80", description: "Layered tawa paratha", order: 4, available: 1, featured: 0 },
+      { categoryId: getCategoryId("tandoor"), name: "Roghni Naan", price: "70", description: "Buttery naan", order: 5, available: 1, featured: 0 },
+      { categoryId: getCategoryId("tandoor"), name: "Tandoori Paratha", price: "70", description: "Tandoori paratha", order: 6, available: 1, featured: 0 },
+      { categoryId: getCategoryId("tandoor"), name: "Kulcha", price: "50", description: "Stuffed kulcha", order: 7, available: 1, featured: 0 },
+      // Drinks
+      { categoryId: getCategoryId("drinks"), name: "Mint Margarita", price: "350", description: "Fresh mint drink", order: 1, available: 1, featured: 0 },
+      { categoryId: getCategoryId("drinks"), name: "Lasi", price: "260", description: "Traditional yogurt drink", order: 2, available: 1, featured: 0 },
+      { categoryId: getCategoryId("drinks"), name: "Seasonal Shake", price: "450", description: "Seasonal fruit shake", order: 3, available: 1, featured: 0 },
+      { categoryId: getCategoryId("drinks"), name: "Cold Drink Can", price: "150", description: "Canned soft drink", order: 4, available: 1, featured: 0 },
+      { categoryId: getCategoryId("drinks"), name: "Cold Drink 1 Ltr.", price: "180", description: "1 liter soft drink", order: 5, available: 1, featured: 0 },
+      { categoryId: getCategoryId("drinks"), name: "Cold Drink 1.5 Ltr.", price: "250", description: "1.5 liter soft drink", order: 6, available: 1, featured: 0 },
+      { categoryId: getCategoryId("drinks"), name: "Mineral Water Large", price: "110", description: "Large water bottle", order: 7, available: 1, featured: 0 },
+      { categoryId: getCategoryId("drinks"), name: "Mineral Water Small", price: "70", description: "Small water bottle", order: 8, available: 1, featured: 0 }
+    ];
+    menuItems.forEach((item) => {
+      const id = randomUUID();
+      this.menuItems.set(id, { ...item, id });
+    });
+  }
+  // Categories
+  async getCategories() {
+    return Array.from(this.categories.values()).sort((a, b) => a.order - b.order);
+  }
+  async getCategoryById(id) {
+    return this.categories.get(id);
+  }
+  async getCategoryBySlug(slug) {
+    return Array.from(this.categories.values()).find((c) => c.slug === slug);
+  }
+  async createCategory(insertCategory) {
+    const id = randomUUID();
+    const category = { ...insertCategory, id };
+    this.categories.set(id, category);
+    return category;
+  }
+  async updateCategory(id, updateData) {
+    const category = this.categories.get(id);
+    if (!category) return void 0;
+    const updated = { ...category, ...updateData };
+    this.categories.set(id, updated);
+    return updated;
+  }
+  async deleteCategory(id) {
+    return this.categories.delete(id);
+  }
+  // Menu Items
+  async getMenuItems() {
+    return Array.from(this.menuItems.values()).sort((a, b) => a.order - b.order);
+  }
+  async getMenuItemById(id) {
+    return this.menuItems.get(id);
+  }
+  async getMenuItemsByCategory(categoryId) {
+    return Array.from(this.menuItems.values()).filter((item) => item.categoryId === categoryId).sort((a, b) => a.order - b.order);
+  }
+  async createMenuItem(insertMenuItem) {
+    const id = randomUUID();
+    const menuItem = { ...insertMenuItem, id };
+    this.menuItems.set(id, menuItem);
+    return menuItem;
+  }
+  async updateMenuItem(id, updateData) {
+    const menuItem = this.menuItems.get(id);
+    if (!menuItem) return void 0;
+    const updated = { ...menuItem, ...updateData };
+    this.menuItems.set(id, updated);
+    return updated;
+  }
+  async deleteMenuItem(id) {
+    return this.menuItems.delete(id);
+  }
+  // Orders
+  async getOrders() {
+    return Array.from(this.orders.values()).sort(
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+  }
+  async getOrderById(id) {
+    return this.orders.get(id);
+  }
+  async createOrder(insertOrder) {
+    const id = randomUUID();
+    const order = {
+      ...insertOrder,
+      id,
+      createdAt: (/* @__PURE__ */ new Date()).toISOString()
+    };
+    this.orders.set(id, order);
+    return order;
+  }
+  async updateOrderStatus(id, status) {
+    const order = this.orders.get(id);
+    if (order) {
+      order.status = status;
+      this.orders.set(id, order);
+      return order;
+    }
+    return void 0;
+  }
+};
+var storage = new MemStorage();
+
+// shared/schema.ts
+import { z } from "zod";
+var insertCategorySchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  slug: z.string().min(1, "Slug is required"),
+  description: z.string().optional(),
+  image: z.string().optional(),
+  order: z.number().default(0)
+});
+var insertMenuItemSchema = z.object({
+  categoryId: z.string().min(1, "Category ID is required"),
+  name: z.string().min(1, "Name is required"),
+  description: z.string().optional(),
+  price: z.number().positive("Price must be positive"),
+  image: z.string().optional(),
+  available: z.boolean().default(true),
+  featured: z.boolean().default(false),
+  order: z.number().default(0)
+});
+var insertOrderSchema = z.object({
+  customerName: z.string().min(2, "Name must be at least 2 characters"),
+  customerPhone: z.string().min(10, "Phone number must be at least 10 digits"),
+  customerAddress: z.string().optional(),
+  deliveryType: z.enum(["delivery", "pickup"]),
+  totalAmount: z.number().positive("Total amount must be positive"),
+  status: z.string().default("pending"),
+  items: z.string()
+});
+
+// server/routes.ts
+import { z as z2 } from "zod";
+import multer from "multer";
+import crypto from "crypto";
+function requireAuth(req, res, next) {
+  if (!req.session?.isAdmin) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+  next();
+}
+async function registerRoutes(app2) {
+  app2.post("/api/auth/login", async (req, res) => {
+    try {
+      const loginSchema = z2.object({
+        username: z2.string().min(1, "Username is required"),
+        password: z2.string().min(1, "Password is required")
+      });
+      const { username, password } = loginSchema.parse(req.body);
+      const adminUsername = process.env.ADMIN_USERNAME || "admin";
+      const adminPassword = process.env.ADMIN_PASSWORD || "admin";
+      if (username === adminUsername && password === adminPassword) {
+        req.session.isAdmin = true;
+        res.json({ success: true, message: "Logged in successfully" });
+      } else {
+        res.status(401).json({ error: "Invalid credentials" });
+      }
+    } catch (error) {
+      if (error instanceof z2.ZodError) {
+        return res.status(400).json({ error: "Invalid input", details: error.errors });
+      }
+      res.status(500).json({ error: "Login failed" });
+    }
+  });
+  app2.post("/api/auth/logout", async (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).json({ error: "Logout failed" });
+      }
+      res.json({ success: true, message: "Logged out successfully" });
+    });
+  });
+  app2.get("/api/auth/status", async (req, res) => {
+    res.json({ isAuthenticated: !!req.session?.isAdmin });
+  });
+  app2.get("/api/hero-slider", async (req, res) => {
+    try {
+      const fs2 = await import("fs");
+      const path2 = await import("path");
+      const configPath = path2.join(process.cwd(), "hero-slider-config.json");
+      if (fs2.existsSync(configPath)) {
+        const config = JSON.parse(fs2.readFileSync(configPath, "utf-8"));
+        res.json(config);
+      } else {
+        res.json({
+          slides: [
+            {
+              id: 1,
+              title: "Halwa Puri Nashta Deal",
+              description: "2 Puri + 1 Plate Aloo + 1 Cup Halwa",
+              price: "450",
+              bgGradient: "from-amber-600/90 to-orange-800/90",
+              imageUrl: ""
+            },
+            {
+              id: 2,
+              title: "Family BBQ Platter",
+              description: "Malai Boti 6 Seekh + Naan + Raita",
+              price: "2400",
+              bgGradient: "from-red-700/90 to-red-900/90",
+              imageUrl: ""
+            },
+            {
+              id: 3,
+              title: "Desi Murgh Karahi",
+              description: "Full Karahi with 4 Naan",
+              price: "3700",
+              bgGradient: "from-orange-600/90 to-amber-800/90",
+              imageUrl: ""
+            }
+          ]
+        });
+      }
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch hero slider data" });
+    }
+  });
+  app2.get("/api/categories", async (req, res) => {
+    try {
+      const categories = await storage.getCategories();
+      res.json(categories);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch categories" });
+    }
+  });
+  app2.get("/api/categories/:id", async (req, res) => {
+    try {
+      const category = await storage.getCategoryById(req.params.id);
+      if (!category) {
+        return res.status(404).json({ error: "Category not found" });
+      }
+      res.json(category);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch category" });
+    }
+  });
+  app2.get("/api/menu-items", async (req, res) => {
+    try {
+      const { categoryId } = req.query;
+      if (categoryId && typeof categoryId === "string") {
+        const items2 = await storage.getMenuItemsByCategory(categoryId);
+        return res.json(items2);
+      }
+      const items = await storage.getMenuItems();
+      res.json(items);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch menu items" });
+    }
+  });
+  app2.get("/api/menu-items/:id", async (req, res) => {
+    try {
+      const item = await storage.getMenuItemById(req.params.id);
+      if (!item) {
+        return res.status(404).json({ error: "Menu item not found" });
+      }
+      res.json(item);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch menu item" });
+    }
+  });
+  app2.get("/api/orders", requireAuth, async (req, res) => {
+    try {
+      const orders = await storage.getOrders();
+      res.json(orders);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch orders" });
+    }
+  });
+  app2.get("/api/orders/:id", async (req, res) => {
+    try {
+      const order = await storage.getOrderById(req.params.id);
+      if (!order) {
+        return res.status(404).json({ error: "Order not found" });
+      }
+      res.json(order);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch order" });
+    }
+  });
+  app2.post("/api/orders", async (req, res) => {
+    try {
+      const body = { ...req.body };
+      if (body.totalAmount !== void 0) {
+        const parsed = typeof body.totalAmount === "string" ? parseFloat(body.totalAmount) : body.totalAmount;
+        if (!Number.isFinite(parsed)) {
+          return res.status(400).json({ error: "Invalid total amount value" });
+        }
+        body.totalAmount = parsed;
+      }
+      const validatedData = insertOrderSchema.parse(body);
+      const order = await storage.createOrder(validatedData);
+      res.status(201).json(order);
+    } catch (error) {
+      if (error instanceof z2.ZodError) {
+        return res.status(400).json({ error: "Invalid order data", details: error.errors });
+      }
+      res.status(500).json({ error: "Failed to create order" });
+    }
+  });
+  app2.patch("/api/orders/:id/status", requireAuth, async (req, res) => {
+    try {
+      const { status } = req.body;
+      if (!status || typeof status !== "string") {
+        return res.status(400).json({ error: "Status is required" });
+      }
+      const order = await storage.updateOrderStatus(req.params.id, status);
+      if (!order) {
+        return res.status(404).json({ error: "Order not found" });
+      }
+      res.json(order);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to update order status" });
+    }
+  });
+  app2.post("/api/admin/categories", requireAuth, async (req, res) => {
+    try {
+      const body = { ...req.body };
+      if (body.order !== void 0 && typeof body.order === "string") {
+        body.order = parseInt(body.order, 10);
+      }
+      const validatedData = insertCategorySchema.parse(body);
+      const category = await storage.createCategory(validatedData);
+      res.status(201).json(category);
+    } catch (error) {
+      if (error instanceof z2.ZodError) {
+        return res.status(400).json({ error: "Invalid category data", details: error.errors });
+      }
+      res.status(500).json({ error: "Failed to create category" });
+    }
+  });
+  app2.patch("/api/admin/categories/:id", requireAuth, async (req, res) => {
+    try {
+      const updateSchema = insertCategorySchema.partial();
+      const body = { ...req.body };
+      if (body.order !== void 0 && typeof body.order === "string") {
+        body.order = parseInt(body.order, 10);
+      }
+      const validatedData = updateSchema.parse(body);
+      const category = await storage.updateCategory(req.params.id, validatedData);
+      if (!category) {
+        return res.status(404).json({ error: "Category not found" });
+      }
+      res.json(category);
+    } catch (error) {
+      if (error instanceof z2.ZodError) {
+        return res.status(400).json({ error: "Invalid category data", details: error.errors });
+      }
+      res.status(500).json({ error: "Failed to update category" });
+    }
+  });
+  app2.delete("/api/admin/categories/:id", requireAuth, async (req, res) => {
+    try {
+      const deleted = await storage.deleteCategory(req.params.id);
+      if (!deleted) {
+        return res.status(404).json({ error: "Category not found" });
+      }
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to delete category" });
+    }
+  });
+  app2.post("/api/admin/menu-items", requireAuth, async (req, res) => {
+    try {
+      const body = { ...req.body };
+      if (body.price !== void 0) {
+        const parsed = typeof body.price === "string" ? parseFloat(body.price) : body.price;
+        if (!Number.isFinite(parsed)) {
+          return res.status(400).json({ error: "Invalid price value" });
+        }
+        body.price = parsed;
+      }
+      if (body.order !== void 0 && typeof body.order === "string") {
+        body.order = parseInt(body.order, 10);
+      }
+      if (body.available !== void 0) {
+        body.available = body.available === 1 || body.available === "1" || body.available === true || body.available === "true";
+      }
+      if (body.featured !== void 0) {
+        body.featured = body.featured === 1 || body.featured === "1" || body.featured === true || body.featured === "true";
+      }
+      const validatedData = insertMenuItemSchema.parse(body);
+      const menuItem = await storage.createMenuItem(validatedData);
+      res.status(201).json(menuItem);
+    } catch (error) {
+      if (error instanceof z2.ZodError) {
+        return res.status(400).json({ error: "Invalid menu item data", details: error.errors });
+      }
+      res.status(500).json({ error: "Failed to create menu item" });
+    }
+  });
+  app2.patch("/api/admin/menu-items/:id", requireAuth, async (req, res) => {
+    try {
+      const updateSchema = insertMenuItemSchema.partial();
+      const body = { ...req.body };
+      if (body.price !== void 0) {
+        const parsed = typeof body.price === "string" ? parseFloat(body.price) : body.price;
+        if (!Number.isFinite(parsed)) {
+          return res.status(400).json({ error: "Invalid price value" });
+        }
+        body.price = parsed;
+      }
+      if (body.order !== void 0 && typeof body.order === "string") {
+        body.order = parseInt(body.order, 10);
+      }
+      if (body.available !== void 0) {
+        body.available = body.available === 1 || body.available === "1" || body.available === true || body.available === "true";
+      }
+      if (body.featured !== void 0) {
+        body.featured = body.featured === 1 || body.featured === "1" || body.featured === true || body.featured === "true";
+      }
+      const validatedData = updateSchema.parse(body);
+      const menuItem = await storage.updateMenuItem(req.params.id, validatedData);
+      if (!menuItem) {
+        return res.status(404).json({ error: "Menu item not found" });
+      }
+      res.json(menuItem);
+    } catch (error) {
+      if (error instanceof z2.ZodError) {
+        return res.status(400).json({ error: "Invalid menu item data", details: error.errors });
+      }
+      res.status(500).json({ error: "Failed to update menu item" });
+    }
+  });
+  app2.delete("/api/admin/menu-items/:id", requireAuth, async (req, res) => {
+    try {
+      const deleted = await storage.deleteMenuItem(req.params.id);
+      if (!deleted) {
+        return res.status(404).json({ error: "Menu item not found" });
+      }
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to delete menu item" });
+    }
+  });
+  app2.get("/api/imagekit/auth", requireAuth, async (req, res) => {
+    try {
+      const token = (typeof req.query.token === "string" ? req.query.token : null) || crypto.randomUUID();
+      const expire = (typeof req.query.expire === "string" ? req.query.expire : null) || (Math.floor(Date.now() / 1e3) + 2400).toString();
+      const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
+      if (!privateKey) {
+        return res.status(500).json({ error: "ImageKit not configured" });
+      }
+      const signature = crypto.createHmac("sha1", privateKey).update(token + expire).digest("hex");
+      res.json({
+        token,
+        expire,
+        signature
+      });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to generate signature" });
+    }
+  });
+  const upload = multer({ storage: multer.memoryStorage() });
+  app2.post("/api/imagekit/upload", requireAuth, upload.single("file"), async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: "No file uploaded" });
+      }
+      const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
+      const publicKey = process.env.IMAGEKIT_PUBLIC_KEY;
+      const urlEndpoint = process.env.IMAGEKIT_URL_ENDPOINT;
+      if (!privateKey || !publicKey || !urlEndpoint) {
+        return res.status(500).json({ error: "ImageKit not configured" });
+      }
+      const token = crypto.randomUUID();
+      const expire = (Math.floor(Date.now() / 1e3) + 2400).toString();
+      const signature = crypto.createHmac("sha1", privateKey).update(token + expire).digest("hex");
+      const FormData = (await import("form-data")).default;
+      const formData = new FormData();
+      formData.append("file", req.file.buffer, {
+        filename: req.file.originalname,
+        contentType: req.file.mimetype
+      });
+      formData.append("publicKey", publicKey);
+      formData.append("signature", signature);
+      formData.append("expire", expire);
+      formData.append("token", token);
+      formData.append("fileName", req.file.originalname);
+      console.log("Uploading to ImageKit:", `${urlEndpoint}/api/v1/files/upload`);
+      const uploadResponse = await fetch(`${urlEndpoint}/api/v1/files/upload`, {
+        method: "POST",
+        body: formData,
+        headers: formData.getHeaders()
+      });
+      console.log("ImageKit response status:", uploadResponse.status);
+      if (!uploadResponse.ok) {
+        const errorText = await uploadResponse.text();
+        console.error("ImageKit upload error status:", uploadResponse.status);
+        console.error("ImageKit upload error body:", errorText);
+        console.error("ImageKit upload error headers:", Object.fromEntries(uploadResponse.headers.entries()));
+        return res.status(uploadResponse.status).json({
+          error: "Upload to ImageKit failed",
+          details: errorText,
+          status: uploadResponse.status
+        });
+      }
+      const result = await uploadResponse.json();
+      console.log("ImageKit upload successful:", result.url);
+      res.json({ url: result.url, fileId: result.fileId });
+    } catch (error) {
+      console.error("Upload error:", error);
+      res.status(500).json({
+        error: "Failed to upload image",
+        details: error instanceof Error ? error.message : "Unknown error"
+      });
+    }
+  });
+  const httpServer = createServer(app2);
+  return httpServer;
+}
+
+// server/app.ts
+function log(message, source = "express") {
+  const formattedTime = (/* @__PURE__ */ new Date()).toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true
+  });
+  console.log(`${formattedTime} [${source}] ${message}`);
+}
+var app = express();
+app.use(express.json({
+  verify: (req, _res, buf) => {
+    req.rawBody = buf;
+  }
+}));
+app.use(express.urlencoded({ extended: false }));
+var MemoryStore = memorystore(session);
+app.use(
+  session({
+    name: "desibeats.sid",
+    secret: process.env.JWT_SECRET || "default-secret-change-in-production",
+    resave: false,
+    saveUninitialized: false,
+    store: new MemoryStore({
+      checkPeriod: 864e5
+      // prune expired entries every 24h
+    }),
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      sameSite: "lax",
+      maxAge: 24 * 60 * 60 * 1e3
+      // 24 hours
+    }
+  })
+);
+app.use((req, res, next) => {
+  const start = Date.now();
+  const path2 = req.path;
+  let capturedJsonResponse = void 0;
+  const originalResJson = res.json;
+  res.json = function(bodyJson, ...args) {
+    capturedJsonResponse = bodyJson;
+    return originalResJson.apply(res, [bodyJson, ...args]);
+  };
+  res.on("finish", () => {
+    const duration = Date.now() - start;
+    if (path2.startsWith("/api")) {
+      let logLine = `${req.method} ${path2} ${res.statusCode} in ${duration}ms`;
+      if (capturedJsonResponse) {
+        logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
+      }
+      if (logLine.length > 80) {
+        logLine = logLine.slice(0, 79) + "\u2026";
+      }
+      log(logLine);
+    }
+  });
+  next();
+});
+async function runApp(setup) {
+  const server = await registerRoutes(app);
+  app.use((err, _req, res, _next) => {
+    const status = err.status || err.statusCode || 500;
+    const message = err.message || "Internal Server Error";
+    res.status(status).json({ message });
+    throw err;
+  });
+  await setup(app, server);
+  const port = parseInt(process.env.PORT || "5000", 10);
+  server.listen({
+    port,
+    host: "0.0.0.0",
+    reusePort: true
+  }, () => {
+    log(`serving on port ${port}`);
+  });
+}
+
+// server/index-prod.ts
+async function serveStatic(app2, _server) {
+  const distPath = path.join(import.meta.dirname, "public");
+  if (!fs.existsSync(distPath)) {
+    throw new Error(
+      `Could not find the build directory: ${distPath}, make sure to build the client first`
+    );
+  }
+  app2.use(express2.static(distPath));
+  app2.use("*", (_req, res) => {
+    res.sendFile(path.join(distPath, "index.html"));
+  });
+}
+(async () => {
+  await runApp(serveStatic);
+})();
+export {
+  serveStatic
+};

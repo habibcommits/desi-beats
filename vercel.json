@@ -1,6 +1,13 @@
 {
   "version": 2,
-  "buildCommand": "npm run build && cp -r dist/public/* public/",
+  "buildCommand": "npm run build",
   "installCommand": "npm install",
-  "framework": null
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "outputDirectory": "dist/public"
 }

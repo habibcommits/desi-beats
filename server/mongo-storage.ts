@@ -182,6 +182,18 @@ export class MongoStorage implements IStorage {
     const updated = await OrderModel.findByIdAndUpdate(id, { status }, { new: true });
     return updated ? this.convertOrder(updated) : undefined;
   }
+
+  async updateOrder(id: string, updates: Partial<Order>): Promise<Order | undefined> {
+    await this.ensureConnection();
+    const updated = await OrderModel.findByIdAndUpdate(id, updates, { new: true });
+    return updated ? this.convertOrder(updated) : undefined;
+  }
+
+  async deleteOrder(id: string): Promise<boolean> {
+    await this.ensureConnection();
+    const result = await OrderModel.findByIdAndDelete(id);
+    return !!result;
+  }
 }
 
 // Export a singleton instance

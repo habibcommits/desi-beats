@@ -23,6 +23,8 @@ export interface IStorage {
   getOrderById(id: string): Promise<Order | undefined>;
   createOrder(order: InsertOrder): Promise<Order>;
   updateOrderStatus(id: string, status: string): Promise<Order | undefined>;
+  updateOrder(id: string, updates: Partial<Order>): Promise<Order | undefined>;
+  deleteOrder(id: string): Promise<boolean>;
 }
 
 export class MemStorage implements IStorage {
@@ -302,6 +304,18 @@ export class MemStorage implements IStorage {
       return order;
     }
     return undefined;
+  }
+
+  async updateOrder(id: string, updates: Partial<Order>): Promise<Order | undefined> {
+    const order = this.orders.get(id);
+    if (!order) return undefined;
+    const updated = { ...order, ...updates };
+    this.orders.set(id, updated);
+    return updated;
+  }
+
+  async deleteOrder(id: string): Promise<boolean> {
+    return this.orders.delete(id);
   }
 }
 

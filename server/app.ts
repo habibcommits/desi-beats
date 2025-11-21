@@ -7,7 +7,7 @@ import express, {
   NextFunction,
 } from "express";
 import session from "express-session";
-import MongoStore from "connect-mongo";
+import memorystore from "memorystore";
 
 import { registerRoutes } from "./routes";
 
@@ -43,22 +43,17 @@ app.use(express.json({
 }));
 app.use(express.urlencoded({ extended: false }));
 
-// Configure session middleware with MongoDB store
-const mongoUri = process.env.MONGO_URI || process.env.MONGODB_URI;
-
+// Configure session middleware
+const MemoryStore = memorystore(session);
 app.use(
   session({
     name: "desibeats.sid",
     secret: process.env.JWT_SECRET || "default-secret-change-in-production",
     resave: false,
     saveUninitialized: false,
-    store: mongoUri ? MongoStore.create({
-      mongoUrl: mongoUri,
-      touchAfter: 24 * 3600, // lazy session update
-      crypto: {
-        secret: process.env.JWT_SECRET || "default-secret-change-in-production"
-      }
-    }) : undefined,
+    store: new MemoryStore({
+      checkPeriod: 86400000, // prune expired entries every 24h
+    }),
     cookie: {
       secure: process.env.NODE_ENV === "production",
       httpOnly: true,

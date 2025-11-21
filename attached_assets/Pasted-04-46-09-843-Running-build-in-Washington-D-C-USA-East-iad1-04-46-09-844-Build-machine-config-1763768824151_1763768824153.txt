@@ -1,0 +1,53 @@
+04:46:09.843 Running build in Washington, D.C., USA (East) – iad1
+04:46:09.844 Build machine configuration: 2 cores, 8 GB
+04:46:09.987 Cloning github.com/habibcommits/desi-beats (Branch: main, Commit: 216422a)
+04:46:11.386 Cloning completed: 1.398s
+04:46:11.429 Found .vercelignore
+04:46:11.446 Removed 120 ignored files defined in .vercelignore
+04:46:11.446   /.git/config
+04:46:11.446   /.git/description
+04:46:11.446   /.git/FETCH_HEAD
+04:46:11.446   /.git/HEAD
+04:46:11.446   /.git/hooks/applypatch-msg.sample
+04:46:11.446   /.git/hooks/commit-msg.sample
+04:46:11.446   /.git/hooks/fsmonitor-watchman.sample
+04:46:11.446   /.git/hooks/post-update.sample
+04:46:11.447   /.git/hooks/pre-applypatch.sample
+04:46:11.447   /.git/hooks/pre-commit.sample
+04:46:11.504 Skipping build cache since Node.js version changed from "22.x" to "20.x"
+04:46:11.785 Warning: Due to "engines": { "node": "20.x" } in your `package.json` file, the Node.js Version defined in your Project Settings ("22.x") will not apply, Node.js Version "20.x" will be used instead. Learn More: http://vercel.link/node-version
+04:46:11.786 Running "vercel build"
+04:46:12.322 Vercel CLI 48.10.5
+04:46:13.419 Warning: Due to "engines": { "node": "20.x" } in your `package.json` file, the Node.js Version defined in your Project Settings ("22.x") will not apply, Node.js Version "20.x" will be used instead. Learn More: http://vercel.link/node-version
+04:46:13.425 Running "install" command: `npm install`...
+04:46:14.901 npm error code ERESOLVE
+04:46:14.902 npm error ERESOLVE could not resolve
+04:46:14.902 npm error
+04:46:14.902 npm error While resolving: connect-mongo@5.1.0
+04:46:14.903 npm error Found: mongodb@7.0.0
+04:46:14.903 npm error node_modules/mongodb
+04:46:14.904 npm error   mongodb@"^7.0.0" from the root project
+04:46:14.904 npm error   mongodb@"~7.0" from mongoose@9.0.0
+04:46:14.904 npm error   node_modules/mongoose
+04:46:14.904 npm error     mongoose@"^9.0.0" from the root project
+04:46:14.904 npm error
+04:46:14.904 npm error Could not resolve dependency:
+04:46:14.904 npm error peer mongodb@">= 5.1.0 < 7" from connect-mongo@5.1.0
+04:46:14.904 npm error node_modules/connect-mongo
+04:46:14.904 npm error   connect-mongo@"^5.1.0" from the root project
+04:46:14.904 npm error
+04:46:14.905 npm error Conflicting peer dependency: mongodb@6.21.0
+04:46:14.905 npm error node_modules/mongodb
+04:46:14.905 npm error   peer mongodb@">= 5.1.0 < 7" from connect-mongo@5.1.0
+04:46:14.905 npm error   node_modules/connect-mongo
+04:46:14.905 npm error     connect-mongo@"^5.1.0" from the root project
+04:46:14.905 npm error
+04:46:14.905 npm error Fix the upstream dependency conflict, or retry
+04:46:14.905 npm error this command with --force or --legacy-peer-deps
+04:46:14.905 npm error to accept an incorrect (and potentially broken) dependency resolution.
+04:46:14.905 npm error
+04:46:14.905 npm error
+04:46:14.905 npm error For a full report see:
+04:46:14.906 npm error /vercel/.npm/_logs/2025-11-21T23_46_13_616Z-eresolve-report.txt
+04:46:14.906 npm error A complete log of this run can be found in: /vercel/.npm/_logs/2025-11-21T23_46_13_616Z-debug-0.log
+04:46:14.914 Error: Command "npm install" exited with 1

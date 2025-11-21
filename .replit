@@ -68,3 +68,6 @@ waitForPort = 5000
 [userenv.shared]
 VITE_IMAGEKIT_PUBLIC_KEY = "public_5ZOcRKen6PR7/Q5FPrOGseUR90U="
 VITE_IMAGEKIT_URL_ENDPOINT = "https://ik.imagekit.io/douamv4eq"
+
+[agent]
+expertMode = true

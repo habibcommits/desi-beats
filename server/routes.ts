@@ -356,8 +356,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/imagekit/auth", requireAuth, async (req, res) => {
     try {
       const crypto = await import("crypto");
-      const token = req.query.token || crypto.randomUUID();
-      const expire = req.query.expire || (Math.floor(Date.now() / 1000) + 2400).toString();
+      const token = (typeof req.query.token === 'string' ? req.query.token : null) || crypto.randomUUID();
+      const expire = (typeof req.query.expire === 'string' ? req.query.expire : null) || (Math.floor(Date.now() / 1000) + 2400).toString();
       const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
       
       if (!privateKey) {

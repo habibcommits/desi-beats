@@ -61,24 +61,31 @@ Preferred communication style: Simple, everyday language.
 - URL-encoded form data support
 - Request timing and logging for performance monitoring
 
-### Database Design (Prepared for PostgreSQL)
+### Database Design (MongoDB)
 
 **Schema Definition**
-- **Drizzle ORM** with Zod for type-safe schema and validation
-- Three main tables: categories, menuItems, orders
-- UUID primary keys using PostgreSQL's gen_random_uuid()
-- Foreign key relationships (menuItems.categoryId → categories.id)
+- **Mongoose** ORM with Zod for type-safe schema and validation
+- Three main collections: categories, menuItems, orders
+- MongoDB ObjectId primary keys (converted to strings for API compatibility)
+- Reference relationships (menuItems.categoryId → categories._id)
 
 **Data Model**
 - **Categories**: name, slug, description, image, order (for sorting)
-- **Menu Items**: name, description, price (decimal), image, availability flags, category reference
-- **Orders**: customer details, delivery type, total amount, status, items (JSON), timestamp
+- **Menu Items**: name, description, price (number stored in DB, string in API), image, availability flags (boolean in DB, 0/1 in API), category reference
+- **Orders**: customer details, delivery type, total amount (number in DB, string in API), status, items (JSON string), timestamp
 - Order items stored as JSON string for flexibility
 
-**Migration Strategy**
-- Drizzle Kit configured for PostgreSQL migrations
-- Migration files output to `/migrations` directory
-- Schema located in `/shared/schema.ts` for client-server sharing
+**Database Connection**
+- MongoDB Atlas connection using MONGO_URI environment variable
+- Cached connection pattern to prevent connection exhaustion in serverless-like environments
+- Automatic reconnection handling in MongoStorage class
+
+**API Contract Compatibility**
+- MongoDB stores numbers and booleans natively
+- Storage layer converts to match legacy PostgreSQL API format:
+  - Numbers → strings for price/totalAmount fields
+  - Booleans → 0/1 integers for available/featured fields
+- Admin routes normalize inputs before validation to handle both formats
 
 ### Build & Deployment Architecture
 

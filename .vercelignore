@@ -1,4 +1,3 @@
-node_modules
 .git
 .replit
 replit.nix
@@ -8,17 +7,3 @@ replit.nix
 .local
 attached_assets
 product_images
-scripts
-server
-client
-shared
-*.md
-*.ts
-*.tsx
-!dist/**
-tsconfig.json
-vite.config.ts
-tailwind.config.ts
-postcss.config.js
-drizzle.config.ts
-package-lock.json

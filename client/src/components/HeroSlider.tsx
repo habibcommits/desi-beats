@@ -63,11 +63,11 @@ export function HeroSlider() {
               index === currentSlide ? "opacity-100" : "opacity-0"
             }`}
           >
-            <div 
-              className={`absolute inset-0 bg-cover bg-center`}
-              style={{
-                backgroundImage: `url(${slide.imageUrl})`,
-              }}
+            <img 
+              src={slide.imageUrl}
+              alt={slide.title}
+              className="absolute inset-0 w-full h-full object-cover"
+              data-testid={`img-hero-${index}`}
             />
             <div className={`absolute inset-0 bg-gradient-to-r ${slide.bgGradient}`} />
             

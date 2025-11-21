@@ -29,11 +29,14 @@ export class MongoStorage implements IStorage {
     }
 
     try {
+      console.log('⏳ [Storage] Connecting to MongoDB...');
       await mongoose.connect(mongoUri);
       this.isConnected = true;
-      console.log("Connected to MongoDB successfully");
+      console.log('✓ [Storage] Connected to MongoDB successfully');
+      console.log('  → Using persistent database storage');
+      console.log('  → Database:', mongoose.connection.name);
     } catch (error) {
-      console.error("MongoDB connection error:", error);
+      console.error('✗ [Storage] MongoDB connection failed:', error);
       throw error;
     }
   }

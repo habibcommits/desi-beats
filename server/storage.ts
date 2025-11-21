@@ -36,7 +36,11 @@ export class MemStorage implements IStorage {
     this.categories = new Map();
     this.menuItems = new Map();
     this.orders = new Map();
+    console.log('✓ [Storage] Using in-memory storage (development mode)');
+    console.log('  → Data will be reset on server restart');
+    console.log('  → Set MONGO_URI environment variable to use persistent MongoDB storage');
     this.seedData();
+    console.log(`✓ [Storage] Seeded ${this.categories.size} categories and ${this.menuItems.size} menu items`);
   }
 
   private seedData() {

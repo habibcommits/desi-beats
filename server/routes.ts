@@ -15,6 +15,23 @@ function requireAuth(req: any, res: any, next: any) {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Log ImageKit configuration status on startup
+  const imagekitPublicKey = process.env.IMAGEKIT_PUBLIC_KEY;
+  const imagekitPrivateKey = process.env.IMAGEKIT_PRIVATE_KEY;
+  const imagekitUrlEndpoint = process.env.IMAGEKIT_URL_ENDPOINT;
+  
+  if (imagekitPublicKey && imagekitPrivateKey && imagekitUrlEndpoint) {
+    console.log('✓ [ImageKit] Configuration found');
+    console.log('  → Public Key:', imagekitPublicKey.substring(0, 20) + '...');
+    console.log('  → URL Endpoint:', imagekitUrlEndpoint);
+    console.log('  → Image upload API ready');
+  } else {
+    console.log('⚠ [ImageKit] Not fully configured');
+    if (!imagekitPublicKey) console.log('  → Missing: IMAGEKIT_PUBLIC_KEY');
+    if (!imagekitPrivateKey) console.log('  → Missing: IMAGEKIT_PRIVATE_KEY');
+    if (!imagekitUrlEndpoint) console.log('  → Missing: IMAGEKIT_URL_ENDPOINT');
+  }
+  
   // Authentication routes
   app.post("/api/auth/login", async (req, res) => {
     try {

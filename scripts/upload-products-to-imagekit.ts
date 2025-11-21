@@ -1,7 +1,7 @@
-import * as XLSX from 'xlsx';
+import XLSX from 'xlsx';
 import ImageKit from 'imagekit';
-import * as fs from 'fs';
-import * as path from 'path';
+import fs from 'fs';
+import path from 'path';
 import mongoose from 'mongoose';
 import { CategoryModel, MenuItemModel } from '../server/models';
 
@@ -78,14 +78,15 @@ async function main() {
     console.log('✓ Connected to MongoDB\n');
 
     console.log('📖 Reading Excel file...');
-    const workbook = XLSX.readFile('attached_assets/foodpanda_products_1763751592478.xlsx');
+    const excelPath = path.join(process.cwd(), 'attached_assets/foodpanda_products_1763751592478.xlsx');
+    const workbook = XLSX.readFile(excelPath);
     const worksheet = workbook.Sheets[workbook.SheetNames[0]];
     const rawData = XLSX.utils.sheet_to_json(worksheet, { header: ['category', 'productName', 'price', 'description'] });
 
     const products: ProductRow[] = rawData.slice(1) as ProductRow[];
     console.log(`✓ Found ${products.length} products\n`);
 
-    const imagesDir = 'product_images';
+    const imagesDir = path.join(process.cwd(), 'product_images');
     const categoryMap = new Map<string, string>();
     let categoryOrder = 1;
 

@@ -173,7 +173,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/orders", async (req, res) => {
     try {
-      const validatedData = insertOrderSchema.parse(req.body);
+      // Convert API format to schema format for validation
+      const body = { ...req.body };
+      if (body.totalAmount !== undefined) {
+        const parsed = typeof body.totalAmount === 'string' ? parseFloat(body.totalAmount) : body.totalAmount;
+        if (!Number.isFinite(parsed)) {
+          return res.status(400).json({ error: "Invalid total amount value" });
+        }
+        body.totalAmount = parsed;
+      }
+      
+      const validatedData = insertOrderSchema.parse(body);
       const order = await storage.createOrder(validatedData);
       res.status(201).json(order);
     } catch (error) {
@@ -207,7 +217,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Admin category routes
   app.post("/api/admin/categories", requireAuth, async (req, res) => {
     try {
-      const validatedData = insertCategorySchema.parse(req.body);
+      // Convert API format to schema format for validation
+      const body = { ...req.body };
+      if (body.order !== undefined && typeof body.order === 'string') {
+        body.order = parseInt(body.order, 10);
+      }
+      
+      const validatedData = insertCategorySchema.parse(body);
       const category = await storage.createCategory(validatedData);
       res.status(201).json(category);
     } catch (error) {
@@ -221,7 +237,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.patch("/api/admin/categories/:id", requireAuth, async (req, res) => {
     try {
       const updateSchema = insertCategorySchema.partial();
-      const validatedData = updateSchema.parse(req.body);
+      
+      // Convert API format to schema format for validation
+      const body = { ...req.body };
+      if (body.order !== undefined && typeof body.order === 'string') {
+        body.order = parseInt(body.order, 10);
+      }
+      
+      const validatedData = updateSchema.parse(body);
       const category = await storage.updateCategory(req.params.id, validatedData);
       if (!category) {
         return res.status(404).json({ error: "Category not found" });
@@ -250,7 +273,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Admin menu item routes
   app.post("/api/admin/menu-items", requireAuth, async (req, res) => {
     try {
-      const validatedData = insertMenuItemSchema.parse(req.body);
+      // Convert API format to schema format for validation
+      const body = { ...req.body };
+      if (body.price !== undefined) {
+        const parsed = typeof body.price === 'string' ? parseFloat(body.price) : body.price;
+        if (!Number.isFinite(parsed)) {
+          return res.status(400).json({ error: "Invalid price value" });
+        }
+        body.price = parsed;
+      }
+      if (body.order !== undefined && typeof body.order === 'string') {
+        body.order = parseInt(body.order, 10);
+      }
+      if (body.available !== undefined) {
+        body.available = body.available === 1 || body.available === '1' || body.available === true || body.available === 'true';
+      }
+      if (body.featured !== undefined) {
+        body.featured = body.featured === 1 || body.featured === '1' || body.featured === true || body.featured === 'true';
+      }
+      
+      const validatedData = insertMenuItemSchema.parse(body);
       const menuItem = await storage.createMenuItem(validatedData);
       res.status(201).json(menuItem);
     } catch (error) {
@@ -264,7 +306,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.patch("/api/admin/menu-items/:id", requireAuth, async (req, res) => {
     try {
       const updateSchema = insertMenuItemSchema.partial();
-      const validatedData = updateSchema.parse(req.body);
+      
+      // Convert API format to schema format for validation
+      const body = { ...req.body };
+      if (body.price !== undefined) {
+        const parsed = typeof body.price === 'string' ? parseFloat(body.price) : body.price;
+        if (!Number.isFinite(parsed)) {
+          return res.status(400).json({ error: "Invalid price value" });
+        }
+        body.price = parsed;
+      }
+      if (body.order !== undefined && typeof body.order === 'string') {
+        body.order = parseInt(body.order, 10);
+      }
+      if (body.available !== undefined) {
+        body.available = body.available === 1 || body.available === '1' || body.available === true || body.available === 'true';
+      }
+      if (body.featured !== undefined) {
+        body.featured = body.featured === 1 || body.featured === '1' || body.featured === true || body.featured === 'true';
+      }
+      
+      const validatedData = updateSchema.parse(body);
       const menuItem = await storage.updateMenuItem(req.params.id, validatedData);
       if (!menuItem) {
         return res.status(404).json({ error: "Menu item not found" });

@@ -44,11 +44,7 @@ export default function CategoriesPage() {
 
   const createMutation = useMutation({
     mutationFn: async (data: typeof formData) => {
-      const response = await apiRequest("/api/admin/categories", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
-      if (!response.ok) throw new Error("Failed to create category");
+      const response = await apiRequest("POST", "/api/admin/categories", data);
       return response.json();
     },
     onSuccess: () => {
@@ -68,11 +64,7 @@ export default function CategoriesPage() {
 
   const updateMutation = useMutation({
     mutationFn: async ({ id, data }: { id: string; data: typeof formData }) => {
-      const response = await apiRequest(`/api/admin/categories/${id}`, {
-        method: "PATCH",
-        body: JSON.stringify(data),
-      });
-      if (!response.ok) throw new Error("Failed to update category");
+      const response = await apiRequest("PATCH", `/api/admin/categories/${id}`, data);
       return response.json();
     },
     onSuccess: () => {
@@ -92,10 +84,7 @@ export default function CategoriesPage() {
 
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
-      const response = await apiRequest(`/api/admin/categories/${id}`, {
-        method: "DELETE",
-      });
-      if (!response.ok) throw new Error("Failed to delete category");
+      const response = await apiRequest("DELETE", `/api/admin/categories/${id}`);
       return response.json();
     },
     onSuccess: () => {

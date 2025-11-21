@@ -1,0 +1,118 @@
+I have a full project already built, but I want to convert it completely into a serverless Vercel-compatible stack.
+
+🔥 Target Architecture
+
+Frontend → Next.js (serverless, deployed on Vercel)
+
+Backend API → Next.js Route Handlers or /api functions (no standalone Node server)
+
+Database → MongoDB Atlas
+
+Image Storage → store product images in MongoDB (Binary or GridFS)
+
+Environment → Vercel serverless environment
+
+Output → fully deployable project with zero traditional servers
+
+🛠️ Tasks to Perform
+1️⃣ Backend Conversion
+
+Convert all my backend logic (currently in Express/Node or any other structure) into:
+
+Next.js Route Handlers under:
+/app/api/.../route.js
+or
+/pages/api/*.js
+
+Must be serverless compatible (no long-running processes, no listeners).
+
+Replace app.listen() with Vercel serverless functions.
+
+2️⃣ MongoDB Integration
+
+Replace old DB connection code with:
+
+A cached mongoose connection file:
+
+import mongoose from "mongoose";
+
+let isConnected = false;
+
+export async function connectDB() {
+  if (isConnected) return;
+  const conn = await mongoose.connect(process.env.MONGO_URI);
+  isConnected = conn.connections[0].readyState;
+}
+
+
+Make sure all API routes import and run connectDB() before database operations.
+
+3️⃣ Image Upload Handling
+
+Convert image upload to work on Vercel:
+
+No file system (fs) allowed.
+
+Image should be stored as:
+
+Binary Buffer in MongoDB, or
+
+GridFS directly.
+
+Backend must accept:
+
+Base64
+
+Blob/File upload from frontend
+
+Return stored image’s ID
+
+Provide /api/products/[id]/image route to fetch the image blob
+
+4️⃣ Frontend Integration (Next.js)
+
+Convert my old frontend to Next.js:
+
+Move all pages into /app router or /pages
+
+Replace API calls with Vercel serverless API routes
+
+Add product creation & image upload using fetch('/api/...')
+
+5️⃣ Environment Variables
+
+Generate .env.local template:
+
+MONGO_URI=
+NEXT_PUBLIC_BASE_URL=
+
+
+And instruct that these must be copied into Vercel → Project → Environment Variables.
+
+6️⃣ Deployment Requirements
+
+Ensure the output works on Vercel with:
+
+vercel.json if needed
+
+Route handlers only
+
+No external Express server
+
+No WebSockets, no child processes, no persistent storage
+
+📦 Final Deliverables
+
+You must rewrite my project as:
+
+A new Next.js app folder
+
+All backend logic converted to route handlers
+
+MongoDB connection using serverless-friendly pattern
+
+Product image upload working with MongoDB storage
+
+Fully deployable on Vercel with zero servers
+
+Step-by-step instructions to push and deploy

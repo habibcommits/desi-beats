@@ -63,7 +63,12 @@ export function HeroSlider() {
               index === currentSlide ? "opacity-100" : "opacity-0"
             }`}
           >
-            <div className={`absolute inset-0 bg-gradient-to-r ${slide.bgGradient}`} />
+            <div 
+              className={`absolute inset-0 bg-cover bg-center bg-gradient-to-r ${slide.bgGradient}`}
+              style={{
+                backgroundImage: `url(${slide.image})`,
+              }}
+            />
             
             <div className="relative h-full container mx-auto px-4 flex flex-col justify-center items-start text-white">
               <div className="max-w-2xl space-y-4 md:space-y-6">

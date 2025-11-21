@@ -7,3 +7,5 @@ replit.nix
 .local
 attached_assets
 product_images
+dist
+node_modules

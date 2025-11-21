@@ -1,0 +1,517 @@
+"TimeUTC","timestampInMs","requestPath","requestMethod","requestQueryString","responseStatusCode","requestId","requestUserAgent","level","environment","branch","vercelCache","type","function","host","deploymentDomain","deploymentId","durationMs","region","maxMemoryUsed","memorySize","message","projectId","traceId","sessionId","invocationId","instanceId","concurrency"
+"2025-11-21 23:39:45",1763768385201,"desi-beats.vercel.app/api/menu-items","GET","",-1,"n5qkj-1763768384960-24bbb6700ce5","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/menu-items/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMCKFH7Y90D84AE4194RGC7","",-1
+"2025-11-21 23:39:45",1763768385192,"desi-beats.vercel.app/api/categories","GET","",-1,"scgl4-1763768384960-563757b83867","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/categories/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMCKFH4NRRX7QCV90M0EX96","",-1
+"2025-11-21 23:39:45",1763768385063,"desi-beats.vercel.app/api/menu-items","GET","",500,"n5qkj-1763768384960-24bbb6700ce5","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",123,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMCKFH7Y90D84AE4194RGC7","",1
+"2025-11-21 23:39:45",1763768385060,"desi-beats.vercel.app/api/categories","GET","",500,"scgl4-1763768384960-563757b83867","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",115,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMCKFH4NRRX7QCV90M0EX96","",1
+"2025-11-21 23:39:36",1763768376869,"desi-beats.vercel.app/api/menu-items","GET","",-1,"thfr7-1763768376626-9d93096816cd","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/menu-items/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMCK7CQFDMX3Z73PBE6WHM3","",-1
+"2025-11-21 23:39:36",1763768376868,"desi-beats.vercel.app/api/categories","GET","",-1,"pwps8-1763768376627-852dba1dae22","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/categories/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMCK7CTCDQHHAEN4RQZS3WA","",-1
+"2025-11-21 23:39:36",1763768376730,"desi-beats.vercel.app/api/categories","GET","",500,"pwps8-1763768376627-852dba1dae22","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",118,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMCK7CTCDQHHAEN4RQZS3WA","",1
+"2025-11-21 23:39:36",1763768376727,"desi-beats.vercel.app/api/menu-items","GET","",500,"thfr7-1763768376626-9d93096816cd","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",126,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMCK7CQFDMX3Z73PBE6WHM3","",1
+"2025-11-21 23:39:08",1763768348790,"desi-beats.vercel.app/api/categories","GET","",-1,"pwps8-1763768348137-e52eef17d968","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/categories/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/categories/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMCJBJN1TTD6YAHKBNRYBSQ","",-1
+"2025-11-21 23:39:08",1763768348775,"desi-beats.vercel.app/api/menu-items","GET","",-1,"pwps8-1763768348137-26e330bf5dc8","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/menu-items/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/menu-items/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMCJBJRQPVQ7XTMRSJYY0FT","",-1
+"2025-11-21 23:39:08",1763768348248,"desi-beats.vercel.app/api/menu-items","GET","",500,"pwps8-1763768348137-26e330bf5dc8","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",134,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMCJBJRQPVQ7XTMRSJYY0FT","",1
+"2025-11-21 23:39:08",1763768348245,"desi-beats.vercel.app/api/categories","GET","",500,"pwps8-1763768348137-e52eef17d968","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",122,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMCJBJN1TTD6YAHKBNRYBSQ","",1
+"2025-11-21 23:28:42",1763767722556,"desi-beats.vercel.app/api/categories","GET","",-1,"nnvvt-1763767722281-d492db743c6a","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/categories/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMBZ8CQQKXJHQ7FB0YT1VN6","",-1
+"2025-11-21 23:28:42",1763767722541,"desi-beats.vercel.app/api/menu-items","GET","",-1,"69kxv-1763767722282-6b08f3d44366","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/menu-items/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMBZ8CPGJR8H8HXME2JVGY6","",-1
+"2025-11-21 23:28:42",1763767722391,"desi-beats.vercel.app/api/categories","GET","",500,"nnvvt-1763767722281-d492db743c6a","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",146,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMBZ8CQQKXJHQ7FB0YT1VN6","",1
+"2025-11-21 23:28:42",1763767722390,"desi-beats.vercel.app/api/menu-items","GET","",500,"69kxv-1763767722282-6b08f3d44366","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",126,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMBZ8CPGJR8H8HXME2JVGY6","",1
+"2025-11-21 23:28:08",1763767688166,"desi-beats.vercel.app/api/categories","GET","",-1,"vmnmf-1763767687867-b98a79738327","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/categories/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMBY6S1CMTZZGAMF25Q6YF4","",-1
+"2025-11-21 23:28:08",1763767688117,"desi-beats.vercel.app/api/menu-items","GET","",-1,"4m6ch-1763767687867-d5711ed2109c","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/menu-items/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMBY6RZFE8NHCT0ZC0C1K0J","",-1
+"2025-11-21 23:28:07",1763767687969,"desi-beats.vercel.app/api/categories","GET","",500,"vmnmf-1763767687867-b98a79738327","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",169,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMBY6S1CMTZZGAMF25Q6YF4","",1
+"2025-11-21 23:28:07",1763767687967,"desi-beats.vercel.app/api/menu-items","GET","",500,"4m6ch-1763767687867-d5711ed2109c","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",127,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMBY6RZFE8NHCT0ZC0C1K0J","",1
+"2025-11-21 23:27:35",1763767655888,"desi-beats.vercel.app/api/menu-items","GET","",-1,"n5qkj-1763767655622-72b7b0f83cd2","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/menu-items/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMBX79T37CK0FQ5F8VJ7174","",-1
+"2025-11-21 23:27:35",1763767655879,"desi-beats.vercel.app/api/categories","GET","",-1,"kwhjx-1763767655620-4bc10c80c264","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/categories/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMBX79HGN1Q52GDJM8G4BDT","",-1
+"2025-11-21 23:27:35",1763767655738,"desi-beats.vercel.app/api/menu-items","GET","",500,"n5qkj-1763767655622-72b7b0f83cd2","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",128,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMBX79T37CK0FQ5F8VJ7174","",1
+"2025-11-21 23:27:35",1763767655728,"desi-beats.vercel.app/api/categories","GET","",500,"kwhjx-1763767655620-4bc10c80c264","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",128,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMBX79HGN1Q52GDJM8G4BDT","",1
+"2025-11-21 23:27:03",1763767623112,"desi-beats.vercel.app/api/auth/login","POST","",-1,"hctzx-1763767622449-e5b6acc9700f","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/auth/login","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/auth/login.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/auth/login.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMBW6WYYRYTKRBDH90DRC7Y","",-1
+"2025-11-21 23:27:02",1763767622558,"desi-beats.vercel.app/api/auth/login","POST","",500,"hctzx-1763767622449-e5b6acc9700f","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/auth/login","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",138,"iad1",78,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMBW6WYYRYTKRBDH90DRC7Y","",1
+"2025-11-21 23:26:57",1763767617253,"desi-beats.vercel.app/api/categories","GET","",-1,"scgl4-1763767616066-4d5f76ab78db","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/categories/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/categories/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMBW15CDBQKXZ32J28D1911","",-1
+"2025-11-21 23:26:57",1763767617213,"desi-beats.vercel.app/api/menu-items","GET","",-1,"glrcl-1763767616063-b45148fe5a1b","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/menu-items/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/menu-items/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMBW14CYC5QT8ZC8PGGR636","",-1
+"2025-11-21 23:26:56",1763767616684,"desi-beats.vercel.app/api/categories","GET","",500,"scgl4-1763767616066-4d5f76ab78db","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",133,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMBW15CDBQKXZ32J28D1911","",1
+"2025-11-21 23:26:56",1763767616652,"desi-beats.vercel.app/api/menu-items","GET","",500,"glrcl-1763767616063-b45148fe5a1b","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",132,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMBW14CYC5QT8ZC8PGGR636","",1
+"2025-11-21 23:13:42",1763766822256,"desi-beats.vercel.app/api/auth/login","POST","",-1,"kwhjx-1763766821480-8fe013f0b320","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/auth/login","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/auth/login.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB3S6VHAMAYTTSENNQXCEY","",-1
+"2025-11-21 23:13:42",1763766822107,"desi-beats.vercel.app/api/auth/login","POST","",500,"kwhjx-1763766821480-8fe013f0b320","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36","error","production","main","","lambda","/api/auth/login","desi-beats.vercel.app","desi-beats.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",129,"iad1",78,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB3S6VHAMAYTTSENNQXCEY","",1
+"2025-11-21 23:12:49",1763766769600,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/menu-items","GET","",-1,"5gj5f-1763766769408-3602400413ff","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/menu-items/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB25SJYGFJBWA8H5132SB2","",-1
+"2025-11-21 23:12:49",1763766769587,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/categories","GET","",-1,"lknz7-1763766769405-25461f53f445","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/categories/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB25S4QRF3D7MJ2Q9FDBCV","",-1
+"2025-11-21 23:12:49",1763766769458,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/menu-items","GET","",500,"5gj5f-1763766769408-3602400413ff","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",123,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB25SJYGFJBWA8H5132SB2","",1
+"2025-11-21 23:12:49",1763766769443,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/categories","GET","",500,"lknz7-1763766769405-25461f53f445","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",130,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB25S4QRF3D7MJ2Q9FDBCV","",1
+"2025-11-21 23:12:48",1763766768600,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/categories","GET","",-1,"7txbp-1763766768098-041f79b9e9a2","vercel-screenshot/1.0","error","production","main","","lambda","/api/categories","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/categories/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/categories/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB24GETY15VXYSXPSVMKR8","",-1
+"2025-11-21 23:12:48",1763766768516,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/menu-items","GET","",-1,"tjbd5-1763766767878-7332268be0ee","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/menu-items/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/menu-items/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB24CRDAC67GMD8HHS6EDM","",-1
+"2025-11-21 23:12:48",1763766768510,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/categories","GET","",-1,"4sms7-1763766767948-b68c9301ae85","vercel-screenshot/1.0","error","production","main","","lambda","/api/categories","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/categories/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/categories/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB24C8RN99JEV7C1X1XSSR","",-1
+"2025-11-21 23:12:48",1763766768509,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/menu-items","GET","",-1,"2nbxx-1763766767864-0bb1f797204a","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/menu-items/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/menu-items/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB24CPFXSQ747AF2FQ3Z4G","",-1
+"2025-11-21 23:12:48",1763766768299,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/menu-items","GET","",-1,"hz82v-1763766768097-c5d1b84d54d0","vercel-screenshot/1.0","error","production","main","","lambda","/api/menu-items","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/menu-items/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB24G8GWX032975Y4SYZSF","",-1
+"2025-11-21 23:12:48",1763766768285,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/categories","GET","",-1,"5n8xf-1763766767864-bddfb93b1330","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/categories/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB24C8RN99JEV7BZX8NT0P","",-1
+"2025-11-21 23:12:48",1763766768165,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/menu-items","GET","",-1,"jb6rv-1763766767948-78af9004245b","vercel-screenshot/1.0","error","production","main","","lambda","/api/menu-items","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/menu-items/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB24CNN2EEGAHYRV0TZKMS","",-1
+"2025-11-21 23:12:48",1763766768151,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/categories","GET","",-1,"57dbf-1763766767878-e371faf61e91","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",-1,"iad1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_utils/cors' imported from /var/task/api/categories/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:280:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:989:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1032:79)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/api/_utils/cors'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB24C7JYVJ4RTZ6QE73MBP","",-1
+"2025-11-21 23:12:48",1763766768142,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/categories","GET","",500,"7txbp-1763766768098-041f79b9e9a2","vercel-screenshot/1.0","error","production","main","","lambda","/api/categories","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",142,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB24GETY15VXYSXPSVMKR8","",1
+"2025-11-21 23:12:48",1763766768136,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/menu-items","GET","",500,"hz82v-1763766768097-c5d1b84d54d0","vercel-screenshot/1.0","error","production","main","","lambda","/api/menu-items","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",127,"iad1",78,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB24G8GWX032975Y4SYZSF","",1
+"2025-11-21 23:12:48",1763766768024,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/menu-items","GET","",500,"tjbd5-1763766767878-7332268be0ee","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",133,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB24CRDAC67GMD8HHS6EDM","",1
+"2025-11-21 23:12:48",1763766768022,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/menu-items","GET","",500,"2nbxx-1763766767864-0bb1f797204a","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.0 Safari/537.36","error","production","main","","lambda","/api/menu-items","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",131,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB24CPFXSQ747AF2FQ3Z4G","",1
+"2025-11-21 23:12:48",1763766768021,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/menu-items","GET","",500,"jb6rv-1763766767948-78af9004245b","vercel-screenshot/1.0","error","production","main","","lambda","/api/menu-items","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",128,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB24CNN2EEGAHYRV0TZKMS","",1
+"2025-11-21 23:12:48",1763766768008,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/categories","GET","",500,"4sms7-1763766767948-b68c9301ae85","vercel-screenshot/1.0","error","production","main","","lambda","/api/categories","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",136,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB24C8RN99JEV7C1X1XSSR","",1
+"2025-11-21 23:12:48",1763766768008,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/categories","GET","",500,"5n8xf-1763766767864-bddfb93b1330","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",129,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB24C8RN99JEV7BZX8NT0P","",1
+"2025-11-21 23:12:48",1763766768007,"desi-beats-2elw28ny7-habibcommits-projects.vercel.app/api/categories","GET","",500,"57dbf-1763766767878-e371faf61e91","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.0 Safari/537.36","error","production","main","","lambda","/api/categories","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","desi-beats-2elw28ny7-habibcommits-projects.vercel.app","dpl_6jbExsS7MeoYXeJX9QUtUs54hXoU",126,"iad1",77,2048,"","prj_SihhMD2IpFIcfnXOqXio9VDa5dZ9","","","01KAMB24C7JYVJ4RTZ6QE73MBP","",1

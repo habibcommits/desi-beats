@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
 import karahiImage from "@assets/Desi Murgh Karahi_1763744959845.jpg";
 import halwaImage from "@assets/halwa purri_1763745103812.jpg";
+import bbqImage from "@assets/assorted-meat-kebab-with-onions-herbs-grilled-vegetables_1763745270067.jpg";
 
 const heroSlides = [
   {
@@ -20,7 +21,7 @@ const heroSlides = [
     description: "Malai Boti 6 Seekh + Naan + Raita",
     price: "2400",
     bgGradient: "from-red-700/90 to-red-900/90",
-    image: "https://images.unsplash.com/photo-1555939594-58d7cb561286?w=1200&h=600&fit=crop",
+    image: bbqImage,
   },
   {
     id: 3,

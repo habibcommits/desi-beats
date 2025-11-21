@@ -2,7 +2,6 @@ import mongoose, { Schema, Document } from "mongoose";
 
 // MongoDB Document Interfaces
 export interface ICategory extends Document {
-  _id: string;
   name: string;
   slug: string;
   description?: string;
@@ -11,7 +10,6 @@ export interface ICategory extends Document {
 }
 
 export interface IMenuItem extends Document {
-  _id: string;
   categoryId: string;
   name: string;
   description?: string;
@@ -23,7 +21,6 @@ export interface IMenuItem extends Document {
 }
 
 export interface IOrder extends Document {
-  _id: string;
   customerName: string;
   customerPhone: string;
   customerAddress?: string;

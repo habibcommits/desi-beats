@@ -17,7 +17,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     if (featured === 'true') {
       const allItems = await storage.getMenuItems();
-      const featuredItems = allItems.filter(item => item.featured === 1);
+      const featuredItems = allItems.filter(item => item.featured === true);
       return successResponse(res, featuredItems);
     }
 

@@ -1,0 +1,94 @@
+03:51:11.457 Running build in Washington, D.C., USA (East) – iad1
+03:51:11.457 Build machine configuration: 2 cores, 8 GB
+03:51:11.590 Cloning github.com/habibcommits/desi-beats (Branch: main, Commit: 1ccda31)
+03:51:12.933 Cloning completed: 1.343s
+03:51:12.997 Found .vercelignore
+03:51:13.014 Removed 113 ignored files defined in .vercelignore
+03:51:13.014   /.git/config
+03:51:13.014   /.git/description
+03:51:13.014   /.git/FETCH_HEAD
+03:51:13.014   /.git/HEAD
+03:51:13.014   /.git/hooks/applypatch-msg.sample
+03:51:13.014   /.git/hooks/commit-msg.sample
+03:51:13.015   /.git/hooks/fsmonitor-watchman.sample
+03:51:13.015   /.git/hooks/post-update.sample
+03:51:13.015   /.git/hooks/pre-applypatch.sample
+03:51:13.015   /.git/hooks/pre-commit.sample
+03:51:13.069 Restored build cache from previous deployment (6AkgFeqiRKz8xKk9vF6DxqNYEmvJ)
+03:51:13.754 Running "vercel build"
+03:51:14.170 Vercel CLI 48.10.5
+03:51:14.983 Running "install" command: `npm install`...
+03:51:17.618 
+03:51:17.619 up to date, audited 726 packages in 2s
+03:51:17.619 
+03:51:17.619 92 packages are looking for funding
+03:51:17.619   run `npm fund` for details
+03:51:17.652 
+03:51:17.653 13 vulnerabilities (3 low, 6 moderate, 4 high)
+03:51:17.653 
+03:51:17.653 To address issues that do not require attention, run:
+03:51:17.654   npm audit fix
+03:51:17.654 
+03:51:17.654 To address all issues possible (including breaking changes), run:
+03:51:17.654   npm audit fix --force
+03:51:17.655 
+03:51:17.655 Some issues need review, and may require choosing
+03:51:17.655 a different dependency.
+03:51:17.655 
+03:51:17.656 Run `npm audit` for details.
+03:51:17.890 
+03:51:17.891 > rest-express@1.0.0 build
+03:51:17.892 > vite build && esbuild server/index-prod.ts --platform=node --packages=external --bundle --format=esm --outfile=dist/index.js
+03:51:17.892 
+03:51:19.116 [36mvite v5.4.20 [32mbuilding for production...[36m[39m
+03:51:19.172 transforming...
+03:51:20.498 
+03:51:20.499 A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
+03:51:25.488 [32m✓[39m 2098 modules transformed.
+03:51:25.979 rendering chunks...
+03:51:25.989 computing gzip size...
+03:51:26.012 [2m../dist/public/[22m[32mindex.html                 [39m[1m[2m  1.38 kB[22m[1m[22m[2m │ gzip:   0.65 kB[22m
+03:51:26.012 [2m../dist/public/[22m[2massets/[22m[35mindex-B5t1e5_c.css  [39m[1m[2m 81.64 kB[22m[1m[22m[2m │ gzip:  12.99 kB[22m
+03:51:26.013 [2m../dist/public/[22m[2massets/[22m[36mindex-CVlECDoZ.js   [39m[1m[33m635.20 kB[39m[22m[2m │ gzip: 194.99 kB[22m
+03:51:26.013 [33m
+03:51:26.013 (!) Some chunks are larger than 500 kB after minification. Consider:
+03:51:26.013 - Using dynamic import() to code-split the application
+03:51:26.013 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+03:51:26.013 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+03:51:26.014 [32m✓ built in 6.87s[39m
+03:51:26.084 
+03:51:26.084   dist/index.js  39.0kb
+03:51:26.085 
+03:51:26.085 ⚡ Done in 10ms
+03:51:26.131 Installing dependencies...
+03:51:27.171 
+03:51:27.172 up to date in 945ms
+03:51:27.172 
+03:51:27.172 92 packages are looking for funding
+03:51:27.172   run `npm fund` for details
+03:51:27.387 Using TypeScript 5.6.3 (local user-provided)
+03:51:34.007 server/models.ts(4,18): error TS2430: Interface 'ICategory' incorrectly extends interface 'Document<ObjectId, any, any, Record<string, any>, {}>'.
+03:51:34.007   Types of property '_id' are incompatible.
+03:51:34.007     Type 'string' is not assignable to type 'ObjectId'.
+03:51:34.007 server/models.ts(13,18): error TS2430: Interface 'IMenuItem' incorrectly extends interface 'Document<ObjectId, any, any, Record<string, any>, {}>'.
+03:51:34.007   Types of property '_id' are incompatible.
+03:51:34.008     Type 'string' is not assignable to type 'ObjectId'.
+03:51:34.008 server/models.ts(25,18): error TS2430: Interface 'IOrder' incorrectly extends interface 'Document<ObjectId, any, any, Record<string, any>, {}>'.
+03:51:34.008   Types of property '_id' are incompatible.
+03:51:34.009     Type 'string' is not assignable to type 'ObjectId'.
+03:51:34.009 
+03:51:36.121 Using TypeScript 5.6.3 (local user-provided)
+03:51:36.497 Using TypeScript 5.6.3 (local user-provided)
+03:51:36.794 api/menu-items/index.ts(20,53): error TS2367: This comparison appears to be unintentional because the types 'boolean' and 'number' have no overlap.
+03:51:36.794 
+03:51:38.194 Using TypeScript 5.6.3 (local user-provided)
+03:51:40.413 Using TypeScript 5.6.3 (local user-provided)
+03:51:41.992 Using TypeScript 5.6.3 (local user-provided)
+03:51:43.780 Using TypeScript 5.6.3 (local user-provided)
+03:51:45.827 Build Completed in /vercel/output [31s]
+03:51:46.286 Deploying outputs...
+03:51:58.668 Deployment completed
+03:51:59.311 Creating build cache...
+03:52:58.223 Created build cache: 58.910s
+03:52:58.223 Uploading build cache [116.54 MB]
+03:52:59.648 Build cache uploaded: 1.424s

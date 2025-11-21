@@ -48,11 +48,7 @@ export default function OrdersPage() {
 
   const updateStatusMutation = useMutation({
     mutationFn: async ({ id, status }: { id: string; status: string }) => {
-      const response = await apiRequest(`/api/orders/${id}/status`, {
-        method: "PATCH",
-        body: JSON.stringify({ status }),
-      });
-      if (!response.ok) throw new Error("Failed to update order status");
+      const response = await apiRequest("PATCH", `/api/orders/${id}/status`, { status });
       return response.json();
     },
     onSuccess: () => {

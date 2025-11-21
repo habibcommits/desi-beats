@@ -59,11 +59,7 @@ export default function MenuItemsPage() {
 
   const createMutation = useMutation({
     mutationFn: async (data: typeof formData) => {
-      const response = await apiRequest("/api/admin/menu-items", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
-      if (!response.ok) throw new Error("Failed to create menu item");
+      const response = await apiRequest("POST", "/api/admin/menu-items", data);
       return response.json();
     },
     onSuccess: () => {
@@ -83,11 +79,7 @@ export default function MenuItemsPage() {
 
   const updateMutation = useMutation({
     mutationFn: async ({ id, data }: { id: string; data: typeof formData }) => {
-      const response = await apiRequest(`/api/admin/menu-items/${id}`, {
-        method: "PATCH",
-        body: JSON.stringify(data),
-      });
-      if (!response.ok) throw new Error("Failed to update menu item");
+      const response = await apiRequest("PATCH", `/api/admin/menu-items/${id}`, data);
       return response.json();
     },
     onSuccess: () => {
@@ -107,10 +99,7 @@ export default function MenuItemsPage() {
 
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
-      const response = await apiRequest(`/api/admin/menu-items/${id}`, {
-        method: "DELETE",
-      });
-      if (!response.ok) throw new Error("Failed to delete menu item");
+      const response = await apiRequest("DELETE", `/api/admin/menu-items/${id}`);
       return response.json();
     },
     onSuccess: () => {

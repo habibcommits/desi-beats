@@ -16,10 +16,6 @@ localPort = 5000
 externalPort = 80
 
 [[ports]]
-localPort = 33395
-externalPort = 3002
-
-[[ports]]
 localPort = 36831
 externalPort = 3001
 
@@ -50,3 +46,9 @@ author = "agent"
 task = "shell.exec"
 args = "npm run dev"
 waitForPort = 5000
+
+[userenv]
+
+[userenv.shared]
+VITE_IMAGEKIT_PUBLIC_KEY = "placeholder"
+VITE_IMAGEKIT_URL_ENDPOINT = "placeholder"

@@ -76,7 +76,7 @@ export function CartSidebar({ open, onClose }: CartSidebarProps) {
                         className="text-sm text-destructive font-semibold"
                         data-testid={`text-cart-item-price-${item.menuItem.id}`}
                       >
-                        Rs {parseFloat(item.menuItem.price).toLocaleString()}
+                        Rs {item.menuItem.price.toLocaleString()}
                       </p>
 
                       <div className="flex items-center gap-2 mt-3">
@@ -124,7 +124,7 @@ export function CartSidebar({ open, onClose }: CartSidebarProps) {
                         className="font-semibold"
                         data-testid={`text-cart-item-total-${item.menuItem.id}`}
                       >
-                        Rs {(parseFloat(item.menuItem.price) * item.quantity).toLocaleString()}
+                        Rs {(item.menuItem.price * item.quantity).toLocaleString()}
                       </p>
                     </div>
                   </div>

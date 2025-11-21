@@ -59,7 +59,7 @@ export default function CheckoutPage() {
     try {
       const orderData = {
         ...data,
-        totalAmount: parseFloat(totalPrice.toFixed(2)),
+        totalAmount: Number(totalPrice.toFixed(2)),
         items: JSON.stringify(items.map(item => ({
           menuItem: {
             id: item.menuItem.id,
@@ -252,7 +252,7 @@ export default function CheckoutPage() {
                         <span className="text-muted-foreground"> x{item.quantity}</span>
                       </div>
                       <span className="font-medium">
-                        Rs {(parseFloat(item.menuItem.price) * item.quantity).toLocaleString()}
+                        Rs {(item.menuItem.price * item.quantity).toLocaleString()}
                       </span>
                     </div>
                   ))}

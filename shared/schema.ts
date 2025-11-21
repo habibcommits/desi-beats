@@ -47,7 +47,7 @@ export type MenuItem = {
   categoryId: string;
   name: string;
   description?: string | null;
-  price: string;
+  price: number;
   image?: string | null;
   available: number;
   featured: number;

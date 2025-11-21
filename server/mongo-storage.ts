@@ -62,7 +62,7 @@ export class MongoStorage implements IStorage {
       categoryId: doc.categoryId,
       name: doc.name,
       description: doc.description ?? null,
-      price: doc.price.toString(),
+      price: doc.price,
       image: doc.image ?? null,
       available: doc.available ? 1 : 0,
       featured: doc.featured ? 1 : 0,

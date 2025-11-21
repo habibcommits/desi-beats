@@ -210,7 +210,7 @@ export default function OrdersPage() {
                         </p>
                       </div>
                       <p className="font-medium">
-                        Rs. {(parseFloat(item.menuItem.price) * item.quantity).toFixed(2)}
+                        Rs. {(item.menuItem.price * item.quantity).toFixed(2)}
                       </p>
                     </div>
                   ))}

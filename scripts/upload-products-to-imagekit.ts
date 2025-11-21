@@ -18,10 +18,10 @@ interface ProductRow {
   description: string;
 }
 
-function parsePrice(priceStr: string): string {
-  if (!priceStr) return '0';
+function parsePrice(priceStr: string): number {
+  if (!priceStr) return 0;
   const match = priceStr.match(/Rs\.\s*(\d+)/);
-  return match ? match[1] : '0';
+  return match ? parseFloat(match[1]) : 0;
 }
 
 function normalizeImageName(productName: string): string {
@@ -87,48 +87,46 @@ async function main() {
     console.log(`✓ Found ${products.length} products\n`);
 
     const imagesDir = path.join(process.cwd(), 'product_images');
-    const categoryMap = new Map<string, string>();
+    const categoryMap = new Map<string, { id: string; itemCount: number }>();
     let categoryOrder = 1;
+
+    console.log('📁 Clearing existing data...\n');
+    await MenuItemModel.deleteMany({});
+    await CategoryModel.deleteMany({});
+    console.log('✓ Cleared existing categories and menu items\n');
 
     console.log('📁 Processing categories and products...\n');
 
     for (const product of products) {
       if (!product.category || !product.productName) continue;
 
-      let categoryId = categoryMap.get(product.category);
+      let categoryData = categoryMap.get(product.category);
 
-      if (!categoryId) {
-        const slug = product.category
+      if (!categoryData) {
+        let slug = product.category
           .toLowerCase()
           .replace(/[^a-z0-9]+/g, '-')
           .replace(/^-|-$/g, '');
 
-        let category = await CategoryModel.findOne({ slug });
-
-        if (!category) {
-          category = await CategoryModel.create({
-            name: product.category,
-            slug,
-            description: null,
-            image: null,
-            order: categoryOrder++,
-          });
-          console.log(`✓ Created category: ${product.category}`);
+        const existingWithSlug = await CategoryModel.findOne({ slug });
+        if (existingWithSlug) {
+          slug = `${slug}-${categoryOrder}`;
         }
 
-        categoryId = category._id.toString();
-        categoryMap.set(product.category, categoryId);
+        const category = await CategoryModel.create({
+          name: product.category,
+          slug,
+          description: null,
+          image: null,
+          order: categoryOrder++,
+        });
+        console.log(`✓ Created category: ${product.category}`);
+
+        categoryData = { id: category._id.toString(), itemCount: 0 };
+        categoryMap.set(product.category, categoryData);
       }
 
-      const existingItem = await MenuItemModel.findOne({
-        name: product.productName,
-        categoryId,
-      });
-
-      if (existingItem) {
-        console.log(`⊘ Skipping duplicate: ${product.productName}`);
-        continue;
-      }
+      const categoryId = categoryData.id;
 
       let imageUrl: string | null = null;
       const imagePath = findMatchingImage(product.productName, imagesDir);
@@ -143,6 +141,7 @@ async function main() {
       }
 
       const price = parsePrice(product.price);
+      const itemOrder = categoryData.itemCount++;
 
       await MenuItemModel.create({
         categoryId,
@@ -152,10 +151,10 @@ async function main() {
         image: imageUrl,
         available: true,
         featured: false,
-        order: 0,
+        order: itemOrder,
       });
 
-      console.log(`✓ Created product: ${product.productName} (Rs. ${price})`);
+      console.log(`✓ Created product: ${product.productName} (Rs. ${price}) [order: ${itemOrder}]`);
     }
 
     console.log('\n🎉 Upload complete!');

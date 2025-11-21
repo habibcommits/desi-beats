@@ -130,11 +130,11 @@ export default function OrderConfirmation() {
                   <div className="flex-1">
                     <p className="font-medium">{item.menuItem.name}</p>
                     <p className="text-sm text-muted-foreground">
-                      Rs {parseFloat(item.menuItem.price).toLocaleString()} x {item.quantity}
+                      Rs {item.menuItem.price.toLocaleString()} x {item.quantity}
                     </p>
                   </div>
                   <p className="font-semibold">
-                    Rs {(parseFloat(item.menuItem.price) * item.quantity).toLocaleString()}
+                    Rs {(item.menuItem.price * item.quantity).toLocaleString()}
                   </p>
                 </div>
               ))}

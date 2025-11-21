@@ -81,7 +81,7 @@ export function ProductCard({ item }: ProductCardProps) {
               className="text-2xl font-bold text-destructive"
               data-testid={`text-product-price-${item.id}`}
             >
-              {parseFloat(item.price).toLocaleString()}
+              {item.price.toLocaleString()}
             </span>
           </div>
 

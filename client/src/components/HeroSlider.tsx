@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
 import karahiImage from "@assets/Desi Murgh Karahi_1763744959845.jpg";
+import halwaImage from "@assets/halwa purri_1763745103812.jpg";
 
 const heroSlides = [
   {
@@ -11,7 +12,7 @@ const heroSlides = [
     description: "2 Puri + 1 Plate Aloo + 1 Cup Halwa",
     price: "450",
     bgGradient: "from-amber-600/90 to-orange-800/90",
-    image: "https://images.unsplash.com/photo-1585521474521-6724a3646aac?w=1200&h=600&fit=crop",
+    image: halwaImage,
   },
   {
     id: 2,

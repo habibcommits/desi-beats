@@ -22,15 +22,13 @@ export default function CheckoutPage() {
   const totalPrice = getTotalPrice();
 
   const form = useForm<any>({
-    resolver: zodResolver(insertOrderSchema),
+    resolver: zodResolver(insertOrderSchema.omit({ totalAmount: true, items: true })),
     defaultValues: {
       customerName: "",
       customerPhone: "",
       customerAddress: "",
       deliveryType: "delivery",
-      totalAmount: 0,
       status: "pending",
-      items: "",
     },
   });
 

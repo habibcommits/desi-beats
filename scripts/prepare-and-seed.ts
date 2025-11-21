@@ -144,6 +144,39 @@ class DatabaseSeeder {
     const karahiImageUrl = await this.uploadImage('attached_assets/Desi Murgh Karahi_1763744959845.jpg', 'desi-murgh-karahi.jpg');
     const bbqImageUrl = await this.uploadImage('attached_assets/assorted-meat-kebab-with-onions-herbs-grilled-vegetables_1763745270067.jpg', 'bbq-platter.jpg');
 
+    // Save hero slider config
+    const heroSliderConfig = {
+      slides: [
+        {
+          id: 1,
+          title: "Halwa Puri Nashta Deal",
+          description: "2 Puri + 1 Plate Aloo + 1 Cup Halwa",
+          price: "450",
+          bgGradient: "from-amber-600/90 to-orange-800/90",
+          imageUrl: halwaImageUrl || "",
+        },
+        {
+          id: 2,
+          title: "Family BBQ Platter",
+          description: "Malai Boti 6 Seekh + Naan + Raita",
+          price: "2400",
+          bgGradient: "from-red-700/90 to-red-900/90",
+          imageUrl: bbqImageUrl || "",
+        },
+        {
+          id: 3,
+          title: "Desi Murgh Karahi",
+          description: "Full Karahi with 4 Naan",
+          price: "3700",
+          bgGradient: "from-orange-600/90 to-amber-800/90",
+          imageUrl: karahiImageUrl || "",
+        },
+      ],
+    };
+    
+    fs.writeFileSync('hero-slider-config.json', JSON.stringify(heroSliderConfig, null, 2));
+    console.log('💾 Hero slider config saved to hero-slider-config.json');
+
     const menuItems: MenuItem[] = [
       // Breakfast
       { categoryId: this.getCategoryId("breakfast"), name: "Whole Wheat Paratha", price: "80", description: "Healthy whole wheat paratha", order: 1, available: 1, featured: 0 },

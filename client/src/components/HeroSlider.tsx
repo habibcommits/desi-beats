@@ -2,47 +2,36 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
-import karahiImage from "@assets/Desi Murgh Karahi_1763744959845.jpg";
-import halwaImage from "@assets/halwa purri_1763745103812.jpg";
-import bbqImage from "@assets/assorted-meat-kebab-with-onions-herbs-grilled-vegetables_1763745270067.jpg";
+import { useQuery } from "@tanstack/react-query";
 
-const heroSlides = [
-  {
-    id: 1,
-    title: "Halwa Puri Nashta Deal",
-    description: "2 Puri + 1 Plate Aloo + 1 Cup Halwa",
-    price: "450",
-    bgGradient: "from-amber-600/90 to-orange-800/90",
-    image: halwaImage,
-  },
-  {
-    id: 2,
-    title: "Family BBQ Platter",
-    description: "Malai Boti 6 Seekh + Naan + Raita",
-    price: "2400",
-    bgGradient: "from-red-700/90 to-red-900/90",
-    image: bbqImage,
-  },
-  {
-    id: 3,
-    title: "Desi Murgh Karahi",
-    description: "Full Karahi with 4 Naan",
-    price: "3700",
-    bgGradient: "from-orange-600/90 to-amber-800/90",
-    image: karahiImage,
-  },
-];
+interface HeroSlide {
+  id: number;
+  title: string;
+  description: string;
+  price: string;
+  bgGradient: string;
+  imageUrl: string;
+}
 
 export function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  // Fetch hero slider data from API
+  const { data: heroSliderData, isLoading } = useQuery<{ slides: HeroSlide[] }>({
+    queryKey: ['/api/hero-slider'],
+  });
+
+  const heroSlides = heroSliderData?.slides || [];
+
   useEffect(() => {
+    if (heroSlides.length === 0) return;
+    
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 5000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [heroSlides.length]);
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
@@ -56,6 +45,14 @@ export function HeroSlider() {
     setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
   };
 
+  if (isLoading || heroSlides.length === 0) {
+    return (
+      <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden bg-gradient-to-br from-black to-amber-950 flex items-center justify-center">
+        <div className="text-white text-xl">Loading...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden bg-gradient-to-br from-black to-amber-950">
       <div className="absolute inset-0">
@@ -67,11 +64,12 @@ export function HeroSlider() {
             }`}
           >
             <div 
-              className={`absolute inset-0 bg-cover bg-center bg-gradient-to-r ${slide.bgGradient}`}
+              className={`absolute inset-0 bg-cover bg-center`}
               style={{
-                backgroundImage: `url(${slide.image})`,
+                backgroundImage: `url(${slide.imageUrl})`,
               }}
             />
+            <div className={`absolute inset-0 bg-gradient-to-r ${slide.bgGradient}`} />
             
             <div className="relative h-full container mx-auto px-4 flex flex-col justify-center items-start text-white">
               <div className="max-w-2xl space-y-4 md:space-y-6">

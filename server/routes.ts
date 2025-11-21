@@ -1,6 +1,6 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
+import { storage } from "./pg-storage";
 import { insertOrderSchema, insertCategorySchema, insertMenuItemSchema } from "@shared/schema";
 import { z } from "zod";
 
@@ -52,6 +52,52 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/auth/status", async (req, res) => {
     res.json({ isAuthenticated: !!req.session?.isAdmin });
   });
+  // Hero Slider
+  app.get("/api/hero-slider", async (req, res) => {
+    try {
+      const fs = await import("fs");
+      const path = await import("path");
+      const configPath = path.join(process.cwd(), 'hero-slider-config.json');
+      
+      if (fs.existsSync(configPath)) {
+        const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+        res.json(config);
+      } else {
+        // Fallback to default config if file doesn't exist
+        res.json({
+          slides: [
+            {
+              id: 1,
+              title: "Halwa Puri Nashta Deal",
+              description: "2 Puri + 1 Plate Aloo + 1 Cup Halwa",
+              price: "450",
+              bgGradient: "from-amber-600/90 to-orange-800/90",
+              imageUrl: "",
+            },
+            {
+              id: 2,
+              title: "Family BBQ Platter",
+              description: "Malai Boti 6 Seekh + Naan + Raita",
+              price: "2400",
+              bgGradient: "from-red-700/90 to-red-900/90",
+              imageUrl: "",
+            },
+            {
+              id: 3,
+              title: "Desi Murgh Karahi",
+              description: "Full Karahi with 4 Naan",
+              price: "3700",
+              bgGradient: "from-orange-600/90 to-amber-800/90",
+              imageUrl: "",
+            },
+          ],
+        });
+      }
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch hero slider data" });
+    }
+  });
+
   // Categories
   app.get("/api/categories", async (req, res) => {
     try {

@@ -10,6 +10,7 @@ const heroSlides = [
     description: "2 Puri + 1 Plate Aloo + 1 Cup Halwa",
     price: "450",
     bgGradient: "from-amber-600/90 to-orange-800/90",
+    image: "https://images.unsplash.com/photo-1585521474521-6724a3646aac?w=1200&h=600&fit=crop",
   },
   {
     id: 2,
@@ -17,6 +18,7 @@ const heroSlides = [
     description: "Malai Boti 6 Seekh + Naan + Raita",
     price: "2400",
     bgGradient: "from-red-700/90 to-red-900/90",
+    image: "https://images.unsplash.com/photo-1555939594-58d7cb561286?w=1200&h=600&fit=crop",
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ const heroSlides = [
     description: "Full Karahi with 4 Naan",
     price: "3700",
     bgGradient: "from-orange-600/90 to-amber-800/90",
+    image: "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=1200&h=600&fit=crop",
   },
 ];
 

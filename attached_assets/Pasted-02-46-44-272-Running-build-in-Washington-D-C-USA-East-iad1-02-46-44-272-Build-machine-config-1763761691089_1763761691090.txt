@@ -1,0 +1,49 @@
+02:46:44.272 Running build in Washington, D.C., USA (East) – iad1
+02:46:44.272 Build machine configuration: 2 cores, 8 GB
+02:46:44.404 Cloning github.com/habibcommits/desi-beats (Branch: main, Commit: ba44b63)
+02:46:45.592 Cloning completed: 1.187s
+02:46:45.702 Restored build cache from previous deployment (6ziNrohZXSF36TMt9yBEfevjYRRV)
+02:46:46.326 Running "vercel build"
+02:46:46.748 Vercel CLI 48.10.5
+02:46:47.335 Installing dependencies...
+02:46:48.890 
+02:46:48.891 up to date in 1s
+02:46:48.891 
+02:46:48.892 87 packages are looking for funding
+02:46:48.892   run `npm fund` for details
+02:46:48.924 Running "npm run build"
+02:46:49.034 
+02:46:49.035 > rest-express@1.0.0 build
+02:46:49.036 > vite build && esbuild server/index-prod.ts --platform=node --packages=external --bundle --format=esm --outfile=dist/index.js
+02:46:49.036 
+02:46:49.362 [36mvite v5.4.20 [32mbuilding for production...[36m[39m
+02:46:49.416 transforming...
+02:46:50.766 
+02:46:50.766 A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
+02:46:55.964 [32m✓[39m 2102 modules transformed.
+02:46:56.424 rendering chunks...
+02:46:56.440 computing gzip size...
+02:46:56.462 [2m../dist/public/[22m[32mindex.html                                                                        [39m[1m[2m    1.38 kB[22m[1m[22m[2m │ gzip:   0.65 kB[22m
+02:46:56.462 [2m../dist/public/[22m[2massets/[22m[32mWhatsApp Image 2025-11-21 at 20.00.27_83f196f8_1763740992228-DOoYfokH.jpg  [39m[1m[2m  150.45 kB[22m[1m[22m
+02:46:56.463 [2m../dist/public/[22m[2massets/[22m[32mchicken_karahi_in_pot-ChoGHL8N.png                                         [39m[1m[2m1,649.84 kB[22m[1m[22m
+02:46:56.463 [2m../dist/public/[22m[2massets/[22m[32mbbq_chicken_tikka_skewers-CAdoDWAV.png                                     [39m[1m[2m1,722.86 kB[22m[1m[22m
+02:46:56.463 [2m../dist/public/[22m[2massets/[22m[32mhalwa_puri_nashta_platter-Buxt5YGZ.png                                     [39m[1m[2m2,159.22 kB[22m[1m[22m
+02:46:56.464 [2m../dist/public/[22m[2massets/[22m[35mindex-B5t1e5_c.css                                                         [39m[1m[2m   81.64 kB[22m[1m[22m[2m │ gzip:  12.99 kB[22m
+02:46:56.464 [2m../dist/public/[22m[2massets/[22m[36mindex-CFE6Fq7t.js                                                          [39m[1m[33m  635.37 kB[39m[22m[2m │ gzip: 195.11 kB[22m
+02:46:56.464 [32m✓ built in 7.08s[39m
+02:46:56.464 [33m
+02:46:56.464 (!) Some chunks are larger than 500 kB after minification. Consider:
+02:46:56.464 - Using dynamic import() to code-split the application
+02:46:56.464 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+02:46:56.464 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+02:46:56.531 
+02:46:56.531   dist/index.js  38.8kb
+02:46:56.531 
+02:46:56.531 ⚡ Done in 10ms
+02:46:56.613 Build Completed in /vercel/output [9s]
+02:46:56.714 Deploying outputs...
+02:46:59.163 Deployment completed
+02:46:59.769 Creating build cache...
+02:47:16.396 Created build cache: 16.628s
+02:47:16.397 Uploading build cache [91.96 MB]
+02:47:17.571 Build cache uploaded: 1.174s

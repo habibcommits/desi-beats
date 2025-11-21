@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/hooks/use-cart";
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import logoImage from "@assets/WhatsApp Image 2025-11-21 at 20.00.27_83f196f8_1763740992228.jpg";
 
 interface HeaderProps {
   onCartClick?: () => void;
@@ -20,7 +19,7 @@ export function Header({ onCartClick }: HeaderProps) {
       <div className="container mx-auto px-4 h-20 flex items-center justify-between gap-4">
         <Link href="/" data-testid="link-home">
           <img 
-            src={logoImage} 
+            src="/logo.png" 
             alt="DESI Beats Café" 
             className="h-14 w-14 sm:h-16 sm:w-16 object-contain hover-elevate active-elevate-2 rounded-full transition-transform"
             data-testid="img-logo"

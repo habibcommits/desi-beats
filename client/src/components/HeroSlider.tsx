@@ -2,9 +2,6 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
-import halwaImage from "@assets/generated_images/halwa_puri_nashta_platter.png";
-import karahiImage from "@assets/generated_images/chicken_karahi_in_pot.png";
-import bbqImage from "@assets/generated_images/bbq_chicken_tikka_skewers.png";
 
 interface HeroSlide {
   id: number;
@@ -22,7 +19,7 @@ const heroSlides: HeroSlide[] = [
     description: "2 Puri + 1 Plate Aloo + 1 Cup Halwa",
     price: "450",
     bgGradient: "from-amber-600/90 to-orange-800/90",
-    image: halwaImage,
+    image: "/halwa_puri_nashta_platter.png",
   },
   {
     id: 2,
@@ -30,7 +27,7 @@ const heroSlides: HeroSlide[] = [
     description: "Malai Boti 6 Seekh + Naan + Raita",
     price: "2400",
     bgGradient: "from-red-700/90 to-red-900/90",
-    image: bbqImage,
+    image: "/bbq_chicken_tikka_skewers.png",
   },
   {
     id: 3,
@@ -38,7 +35,7 @@ const heroSlides: HeroSlide[] = [
     description: "Full Karahi with 4 Naan",
     price: "3700",
     bgGradient: "from-orange-600/90 to-amber-800/90",
-    image: karahiImage,
+    image: "/chicken_karahi_in_pot.png",
   },
 ];
 

@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
-import halwaImage from "@assets/halwa_puri_nashta_platter.png";
-import karahiImage from "@assets/chicken_karahi_in_pot.png";
-import bbqImage from "@assets/bbq_chicken_tikka_skewers.png";
+import halwaImage from "@assets/generated_images/halwa_puri_nashta_platter.png";
+import karahiImage from "@assets/generated_images/chicken_karahi_in_pot.png";
+import bbqImage from "@assets/generated_images/bbq_chicken_tikka_skewers.png";
 
 interface HeroSlide {
   id: number;

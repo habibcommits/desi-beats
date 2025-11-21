@@ -1,0 +1,1415 @@
+1. Extracted Color Scheme from the Logo
+From the logo, these colors can be identified:
+🎨 Primary Colors
+Deep Black (#000000) – Background
+
+
+Warm Gold / Sand Yellow (#E6B769 to #D8A55A) – Building silhouettes & ring
+
+
+Bold Yellow (#F6B21A) – Word “DESI”
+
+
+Red / Maroon (#9C1F1F to #A22A21) – Background behind “Beats Café”
+
+
+🎨 Complementary Accent Colors
+White (#FFFFFF) – Text on darker backgrounds
+
+
+Dark Brown (#4A2A18) – For subtle UI elements
+
+
+👉 Recommended Website Color Palette
+Purpose
+Color
+Primary Background
+#000000
+Primary Accent
+#E6B769
+Buttons / CTAs
+#F6B21A
+Heading Text
+#F6B21A / #FFFFFF
+Section Backgrounds
+#9C1F1F or #D8A55A
+Borders / Lines
+#4A2A18
+
+
+✅ 2. Website Plan (Client Side)
+Inspired by Dominos and KFC Pakistan
+Home Page
+Hero slider (deals, promotions)
+
+
+Featured products
+
+
+Today’s special offers
+
+
+Quick order buttons (e.g., "Order Now", "Deals")
+
+
+Location selector
+
+
+Testimonials & reviews
+
+
+Footer with social links
+
+
+Products / Menu Page
+Category-wise food items (Burgers, BBQ, Pizza, Rolls, Drinks etc.)
+
+
+Item details with price, description, add-ons
+
+
+Add to cart + quantity selector
+
+
+Deals Page
+Combo meals
+
+
+Special discounts
+
+
+Limited-time offers
+
+
+Checkout Page
+Delivery / Pickup choice
+
+
+Address form
+
+
+Payment options: Cash, Card, Wallets
+
+
+Delivery charges auto-calculation
+
+
+Order Tracking Page
+Real-time status: Order Received → Preparing → Out for Delivery → Delivered
+
+
+User Account Area
+Login / Signup
+
+
+Order history
+
+
+Favorite items
+
+
+Saved addresses
+
+
+Wallet (if needed)
+
+
+
+✅ 3. Admin Panel Features
+Admin Dashboard
+Total Users
+
+
+Total Orders
+
+
+Revenue
+
+
+Active Deals
+
+
+Pending Deliveries
+
+
+Manage Offers
+Add/Edit/Delete deals
+
+
+Set deal timers
+
+
+Upload banners
+
+
+Manage Products
+Categories management
+
+
+Add/Edit/Delete products
+
+
+Pricing
+
+
+Multiple images
+
+
+Availability toggle
+
+
+Manage Users
+Customers
+
+
+Delivery riders
+
+
+Block/unblock users
+
+
+Manage Orders
+View all orders
+
+
+Update status (Preparing, Delivered, Cancelled)
+
+
+Assign rider
+
+
+Update expected delivery time
+
+
+Payments Management
+Track card payments
+
+
+COD transactions
+
+
+Wallet payments (Easypaisa/JazzCash)
+
+
+Refund management
+
+
+Reports & Analytics
+Daily sales
+
+
+Best-selling items
+
+
+Customers insights
+
+
+Export to CSV/PDF
+
+
+Marketing Tools
+Push notifications (optional)
+
+
+SMS / WhatsApp promotions
+
+
+Coupon codes
+
+
+
+✅ 4. Order Confirmation via SMS / WhatsApp
+Free or Budget-Friendly Solutions
+✔ Free Options
+WhatsApp Business App + API workarounds
+
+
+Use WhatsApp Business App with automated reply tools
+
+
+Not 100% automatic but cheapest
+
+
+Free-tier Email-to-SMS Gateways
+
+
+Some carriers provide email-to-SMS free
+
+
+Works only for local Pakistan numbers w/ specific carriers
+
+
+
+✔ Budget-Friendly Options (Recommended for Restaurants)
+WhatsApp APIs
+Service
+Cost
+Notes
+UltraMsg API
+$5/month
+Very easy API; perfect for order confirmation
+Chat-API / GreenAPI
+$6–10/month
+Stable WhatsApp messaging
+WATI Cloud API
+Expensive
+Not recommended for budget
+
+👉 Best Choice: UltraMsg API (Cheap, reliable, easy).
+SMS APIs in Pakistan
+Provider
+Rate
+Notes
+ThinQ / SMS.net.pk
+~0.20 PKR per SMS
+Very cheap
+BrandSMS.pk
+~0.25 PKR per SMS
+Reliable
+Zong CMPP / Jazz SMPP
+Bulk only
+More technical
+
+👉 Best Choice: sms.net.pk
+ Cheap + Pakistan-specific + very easy.
+
+✅ 5. Best & Affordable Payment Gateways for Pakistan
+Top Recommended
+🥇 Easypaisa Payment Gateway
+Supports QR code, wallet, & card
+
+
+Cheap integration
+
+
+Real-time payment confirmation
+
+
+Very popular in Pakistan
+
+
+🥈 JazzCash Payment Gateway
+Wallet + debit card
+
+
+Good documentation
+
+
+Very popular
+
+
+🥉 PayFast PK (Best for Cards)
+Accepts: Debit/Credit Cards (VISA/Master)
+
+
+Wallets (JazzCash/Easypaisa)
+
+
+Apple Pay (coming soon)
+
+
+Low fees
+
+
+Supports COD confirmation
+
+
+Other Optional Payment Methods
+COD (Cash on Delivery)
+
+
+Card on Delivery (wireless POS machine)
+
+
+Bank Transfer
+
+
+
+✅ 6. Suggested Tech Stack (Budget Friendly)
+Frontend
+Next.js (recommended) or React
+
+
+Tailwind CSS
+
+
+ShadCN UI (for modern components)
+
+
+Backend
+Node.js + Express
+
+
+MongoDB / PostgreSQL
+
+
+OR Laravel if preferred
+
+
+Admin Panel
+React Admin
+
+
+Next.js Admin Dashboard
+
+
+Laravel Nova (paid but powerful)
+
+
+Hosting
+Vercel for frontend
+
+
+Render / Railway / Cyclic for backend
+
+
+MongoDB Atlas free tier
+
+
+
+📌 7. Cost Estimation (Budget Friendly)
+Domain: 1500 Rs per year
+
+
+Hosting (Frontend): Free (Vercel)
+
+
+Backend: Free/cheap (Render free tier)
+
+
+Database: Free (MongoDB Atlas free)
+
+
+WhatsApp API: $5/month (UltraMsg)
+
+
+Payments: Easypaisa/JazzCash setup free
+
+
+Estimated monthly cost: PKR 1500–3000 only
+
+🌟 DESI Beats Café – Full Website Development Plan
+Inspired by Domino’s Pakistan & KFC Pakistan
+
+✅ 1. Complete Site Map
+Client Website
+Home
+ ├── Hero Slider (Deals)
+ ├── Featured Items
+ ├── Today’s Special
+ ├── Popular Categories
+ ├── Testimonials
+ └── Footer
+
+Menu
+ ├── Burgers
+ ├── Pizza
+ ├── BBQ
+ ├── Rolls
+ ├── Drinks
+ ├── Add-ons & Extras
+ └── Product Details
+
+Deals
+ ├── Combo Deals
+ ├── Limited Time Offers
+ └── Family Deals
+
+Checkout
+ ├── Cart
+ ├── Delivery / Pickup Selection
+ ├── Address Form
+ ├── Payment Method
+ ├── Order Summary
+ └── Order Confirmation
+
+Order Tracking
+ └── Live tracking page with statuses
+
+User Account
+ ├── Login / Signup
+ ├── Profile
+ ├── Order History
+ ├── Saved Addresses
+ └── Favorites
+
+About Us
+Contact Us
+
+Policies
+ ├── Refund Policy
+ ├── Privacy Policy
+ └── Terms & Conditions
+
+
+✅ 2. Wireframes (Text-Based Mockups)
+These help visualize UI sections.
+
+Home Page Wireframe
+----------------------------------------------------
+| NAVBAR (Logo | Menu | Deals | Track Order | Login)
+----------------------------------------------------
+|  HERO SLIDER (3–4 banners, deals)
+----------------------------------------------------
+|  QUICK ORDER BUTTONS (Order Now | Deals)
+----------------------------------------------------
+|  FEATURED PRODUCTS (cards in 3 or 4 columns)
+----------------------------------------------------
+|  TODAY'S SPECIAL SECTION (horizontal scroll)
+----------------------------------------------------
+|  CATEGORY GRID (6–8 categories)
+----------------------------------------------------
+|  TESTIMONIALS (slider)
+----------------------------------------------------
+|  FOOTER
+----------------------------------------------------
+
+
+Menu Page Wireframe
+----------------------------------------
+| FILTERS (Categories) 
+----------------------------------------
+| Product Card Grid
+| [Image] [Name] [Price] [Add to Cart]
+| [Image] [Name] [Price] [Add to Cart]
+----------------------------------------
+
+
+Product Details
+--------------------------------------------------
+| Product Image     | Title
+|                    Price
+|                    Quantity Selector
+|                    Add-ons
+|                    Add to Cart
+--------------------------------------------------
+| Description
+--------------------------------------------------
+
+
+Checkout Page
+--------------------------------------------------
+| Cart Items
+--------------------------------------------------
+| Delivery / Pickup Selection
+--------------------------------------------------
+| Address Form
+--------------------------------------------------
+| Payment Method (COD, Card, Wallet)
+--------------------------------------------------
+| Place Order Button
+--------------------------------------------------
+
+
+Order Tracking Page
+----------------------------------------
+| Track Order: #12345
+----------------------------------------
+| ● Order Received (time)
+| ● Preparing (time)
+| ○ Out for Delivery
+| ○ Delivered
+----------------------------------------
+
+
+✅ 3. UI/UX Color Palette
+Extracted from Logo
+Usage
+Color
+Primary Background
+#000000
+Primary Accent
+#E6B769
+Buttons / CTAs
+#F6B21A
+Heading Text
+#F6B21A / #FFFFFF
+Section Backgrounds
+#9C1F1F / #D8A55A
+Borders
+#4A2A18
+
+Font Suggestions
+Headings: Poppins / Montserrat
+
+
+Body: Inter / Roboto
+
+
+Buttons: Poppins SemiBold
+
+
+
+✅ 4. Full Project Architecture
+Frontend
+Next.js 14 (App Router)
+
+
+TailwindCSS + ShadCN UI
+
+
+React Query (for API data)
+
+
+Toast notifications
+
+
+Client-side cart with localStorage
+
+
+Backend
+Node.js + Express (or Nest.js if needed)
+
+
+Authentication: JWT
+
+
+API Validation: Zod or Joi
+
+
+Payment Integration: Easypaisa / JazzCash / PayFast
+
+
+WhatsApp API: UltraMsg
+
+
+Database
+MongoDB Atlas (Free Tier)
+
+
+Hosting
+Frontend → Vercel
+
+
+Backend → Render / Railway
+
+
+Database → MongoDB Cloud
+
+
+
+✅ 5. Database Schema (MongoDB)
+Users
+{
+  _id,
+  name,
+  phone,
+  email,
+  password,
+  addresses: [],  
+  role: "customer" | "admin" | "rider",
+  createdAt
+}
+
+Products
+{
+  _id,
+  name,
+  description,
+  price,
+  category,
+  images: [],
+  addOns: [],
+  isAvailable: true,
+  createdAt
+}
+
+Deals
+{
+  _id,
+  title,
+  description,
+  price,
+  items: [],
+  banner,
+  validFrom,
+  validTo
+}
+
+Orders
+{
+  _id,
+  userId,
+  items: [
+    { productId, qty, price }
+  ],
+  totalAmount,
+  paymentMethod,
+  paymentStatus,
+  orderStatus: "received" | "preparing" | "out_for_delivery" | "delivered",
+  address,
+  whatsappStatus,
+  createdAt
+}
+
+Payments
+{
+  _id,
+  orderId,
+  method: "COD" | "Card" | "Wallet",
+  transactionId,
+  amount,
+  status
+}
+
+
+✅ 6. API Endpoints List
+Auth
+POST /auth/signup
+POST /auth/login
+POST /auth/logout
+
+Products
+GET /products
+GET /products/:id
+POST /products (admin)
+PUT /products/:id (admin)
+DELETE /products/:id (admin)
+
+Deals
+GET /deals
+POST /deals (admin)
+PUT /deals/:id (admin)
+DELETE /deals/:id
+
+Orders
+POST /orders
+GET /orders/:id
+GET /orders/user/:id
+PUT /orders/:id/status (admin)
+
+Payments
+POST /payments/init
+POST /payments/verify
+
+WhatsApp (UltraMsg)
+POST /notifications/order-confirmation
+POST /notifications/order-status
+
+
+✅ 7. Admin Panel Design Template (Structure)
+Dashboard
+Orders Today
+
+
+Total Revenue
+
+
+Active Orders
+
+
+New Users
+
+
+Charts (sales, categories)
+
+
+Products Management
+Table view with:
+
+
+Name
+
+
+Price
+
+
+Category
+
+
+Availability toggle
+
+
+Add Product Form (Images, Price, Description)
+
+
+Deals Management
+Add/Edit/Delete deals
+
+
+Upload banners
+
+
+Start & end time selection
+
+
+Orders Management
+View order list
+
+
+Assign rider
+
+
+Change order status
+
+
+Print invoice
+
+
+Users Management
+Customer list
+
+
+Rider list
+
+
+Block/Unblock users
+
+
+Payments Management
+See transaction logs
+
+
+Refund requests
+
+
+Marketing
+Create Coupons
+
+
+WhatsApp Promotions (via UltraMsg)
+
+
+
+🎯 8. Final Cost Overview
+Feature
+Cost
+Domain
+~1500 PKR / year
+Hosting Frontend
+Free
+Hosting Backend
+Free (starter tiers)
+WhatsApp API
+$39 (UltraMsg monthly)
+SMS (optional)
+0.20 PKR per SMS
+Payment Gateways
+No monthly cost
+
+Total monthly: ~7,000–8,000 PKR maximum
+ (Essentially nothing except WhatsApp API)
+
+📦 9. Additional Documents I Can Produce (If You Want):
+✔ PDF Project Proposal
+ ✔ Professional Client-ready document
+ ✔ UI mockup in Figma
+ ✔ Database ERD diagram
+ ✔ Flowchart for order lifecycle
+ ✔ API documentation in Swagger format
+
+
+
+
+Manu….
+مصالحہ ہاٹ ونگز ہیں ۔ سمی سیڈ ہاٹ ونگز 6 ہیں ۔ گارلک بار بی کیو ونگز 6 ہیں ۔
+سادہ فرائز - مصالحہ فرائز -
+گارلک ماتیو فرائز -
+سمی سیڈ فرائز -
+سموسہ پلیٹ : پکوڑے 250 گرام چکن پکوڑے 250 گرام ۔
+گرین سلاد .
+منٹ راستہ
+منٹ ساس
+تو اپر اٹھا ۔ روغنی نان -
+تندوری پر اٹھا ۔
+مار گرایا ۔
+سیزنل ٹیک - کولڈ ڈریک ( کین) . کولڈ ڈرنک (1 لیٹر) -
+کولڈ ڈرنک ( 1.5 لیٹر ) ۔
+منرل واٹر ( لارج )
+مرل واثر ( سمال)
+Hot Wings
+Masala Hot Wings 6 pcs- Sesame Seed Hot Wings 6 pcs- Garlic B.B.Q Wings 6 pce-
+650/-
+780/-
+850/-
+Fries / Refreshment
+Plan Fries
+200/400
+Masala Fries
+220/440
+Garlic Mayo Fries
+250/450
+Sesame Seed Fries
+250/499
+Samosa Plate
+180/-
+Pakoray 250g-
+220/-
+Chicken Pakoray 250g
+400/-
+Salad
+Green Salad
+100/-
+Mint Raita-
+120/-
+Mint Sauce
+140/-
+Tandoor
+Roti- Naan
+25/-
+30/-
+Chapati
+Tawa Paratha
+70/-
+80/-
+Roghni Naan
+70/-
+Tandoori Paratha- Kulcha
+70/-
+50/-
+Drinks
+Mint Margarita- Lasi
+Seasonal Shake Cold Drink Can-
+350/-
+260/-
+450/-
+150/-
+Cold Drink 1 Ltr.
+180/-
+Cold Drink 1.5 Ltr.
+250/-
+Mineral Water Large
+110/-
+Mineral Water Small
+70/-
+چکن تکہ بوٹی
+چکن ملائی ہوئی ۔
+چکن تکہ لیگ ہیں ۔
+چکن تکہ جسٹ ہیں.
+چکن تکہ فی پلیٹ ملائی بوٹی 6 سیخ
+زنگر بر گریه فرائد - بیف سمیش برگر فرائز -
+کر ہی چکن پیٹی برگر به فرائز
+انڈہ شامی برگر
+چکن شوارما
+چکن چیز شوارما -
+زنگر شوار ما
+شوار ہا کا میٹر۔
+گارلک مائیورول . باربی کیو پراٹھا رول - زنگر پر اٹھارول -
+چکن ہاٹ شارٹ - چکن فرائیڈ 2 ہیں - فرائز -
+چکن فرائیڈ 6 ہیں - فرائز -
+نکٹس 6 پیس + فرائز -
+B.B.Q
+Chicken Tikka Boti
+200/-
+Chicken Malia Boti
+400/-
+Chicken Tikka Pice Leg
+370/-
+Chicken Tikka Pice Chest
+380/-
+Chicken Tikka Per Plate
+400/-
+Malai Boti 6 seekh-
+2400/-
+Burger
+Zinger Burger /Fries
+350/-
+Beef Smash Burger /Fries
+400/-
+Crispy Chicken Petty Burger/Fries-
+350/-
+Anda Shami Burger-
+220/-
+Shawarma
+Chicken Shawarma
+220/-
+Chicken Cheese Shawarma
+-300/-
+Zinger Shawarma
+300/-
+Shawarma Platter
+-480/-
+Roll Paratha
+Garlic Mayo Roll B.B.Q Pratha Roll- Zinger Pratha Roll-
+-350/-
+-400/-
+380/-
+Fried Chicken
+HE
+Chicken Hot Shots-
+450/800
+Chicken Fried 2 Piece/Fries-
+-499/-
+Chicken Fried 6 Piece/Fries
+1250/-
+Nuggets 6 Pcs with Fries-
+-499/-
+   
+
+🥘 Main Course
+Item
+Price
+Beef Nehari
+700/-
+Lahori Chanay
+300/-
+Special Daal
+350/-
+Special Sabzi
+350/-
+Chicken Qorma
+450/-
+Chicken Haleem
+480/-
+Chicken Qeema
+480/-
+Chicken Jalfarezi
+590/-
+Chicken Madrasi
+950/-
+
+
+🍗 Chicken Karahi / Handi
+Item
+Price
+Chicken Karahi Half
+1150/-
+Chicken Karahi Full
+2250/-
+Chicken Handi Half
+1490/-
+Chicken Handi Full
+2790/-
+Desi Murgh Karahi Half
+1900/-
+Desi Murgh Karahi Full
+3700/-
+
+
+🐐 Mutton Karahi
+Item
+Price
+Mutton Karahi Half
+1950/-
+Mutton Karahi Full
+3800/-
+
+
+🍚 Rice Items
+Item
+Price
+Daal Chawal
+490/-
+Plain Rice
+300/-
+Chicken Pulao
+480/-
+Chicken Biryani
+590/-
+Chicken Fried Rice
+690/-
+Egg Fried Rice
+590/-
+Plain Biryani
+350/-
+
+
+🐟 Fish
+Item
+Price
+Rahu Grilled Fish 1kg
+1850/-
+Rahu Fried Fish 1kg
+2000/-
+Finger Fried Fish 1kg
+2350/-
+
+
+🍮 Sweets
+Item
+Price
+DBC Special Kheer (Small)
+320/-
+DBC Special Kheer (Large)
+580/-
+DBC Special Gajar Halwa (250g)
+900/-
+
+
+🍳 Breakfast Menu
+Item
+Price
+Whole Wheat Paratha
+80/-
+Allu Paratha
+150/-
+Allu Cheese Paratha
+220/-
+Chicken Paratha
+250/-
+Chicken Cheese Paratha
+300/-
+Fry Egg
+80/-
+Omelette
+90/-
+Cheese Omelette
+150/-
+Puri
+70/-
+Halwa 250g
+220/-
+Aloo Bhujia
+250/-
+Chanay
+300/-
+Desi Ghee Paratha
+180/-
+Sarson ka Saag
+650/-
+Makki ki Roti
+210/-
+Omelette (2 Eggs)
+160/-
+Fry Eggs (2)
+150/-
+
+
+☕ Tea
+Item
+Price
+Chai
+110/- / 200/-
+Desi Beats Special Chai
+—
+
+
+🥘 Nashta Deal
+Item
+Price
+Halwa Puri Nashta (2 Puri + Chanay + Aloo Bhujia + Halwa)
+450/-
+
+
+🛎 Additional Info
+Info
+Details
+FREE HOME DELIVERY
+✔ Available
+Contact
+0311-3366143 — 0322-3366143
+Address
+Shop A6, Opp. Apollo Tower, Street #15, E11/4 Islamabad
+Services
+Functions, Parties & Tiffin Box Arrangements
+
+  
+DESI BEATS
+DESI
+Beats Café
+WE ARRANGE ALL TYPES OF FUNCTIONS, PARTIES & Tifin Box
+IN THE BEST WAY.
+300/-
+FREE HOME
+DELIVERY
+Scan Mal Food Panda
+CAFÉ 0311-3366143-0322-3366143
+Break Fast
+Whole Wheat Paratha
+80/-
+Allu Paratha
+150/-
+Allu Cheese Paratha
+220/-
+Chicken Paratha
+250/-
+Chicken Cheese Paratha
+300/-
+Saag Paratha
+250/-
+Fry Egg
+80/-
+Omelette
+90/-
+Cheese Omelette
+150/-
+Halwa Pori Nashta
+Puri
+70/-
+Halwa 250g
+220/-
+Aloo Bhujia
+250/-
+Chanay
+300/-
+Desi Ghee Paratha
+180/-
+Sarson ka Saag
+650/-
+Makki ki Roti
+210/-
+Omelette (2) Eggs
+160/-
+Fry Eggs (2)
+150/-
+Chai
+110/-
+Desi Beats Special Chai
+200/-
+دیسی گندم پر اٹھا ۔
+آلو پراٹھا -
+آلو چیز پراٹھا -
+چکن پر اٹھا ۔
+چکن چیز پر اٹھا۔
+ساگ پر اٹھا ۔
+فرائی انڈہ - آملیٹ
+چیز آملیٹ
+یوڑی
+آلو بھیجیا۔
+دیسی گھی پر اٹھا ۔
+سرسوں کا ساگ
+مکئی کی روٹی
+آملیٹ (2) انڈے۔
+فرائی (2) انڈے۔
+چائے
+دیسی بیٹس اسپیشل چائے
+Halwa Puri
+DEAL Nashta 450/-
+حلوہ پوڑی نا
+2 پوڑی + چنے + آلو بھیجیا + حلوہ
+Shop A6, Opp. Apollo Tower St. #: 15, E11/4 Islamabad    
+بیف نہاری
+لاہوری چنے
+پیشل دال .
+پیشل سبزی
+چکن قورمه
+چکن حلیم -
+چکن قیمہ-
+چکن جلفریزی
+چلن مدراسی -
+چکن کڑاہی باف
+چکن کڑاہی فل -
+چکن ہانڈی باف
+چکن ہانڈی فل -
+دیسی مرغ کڑاہی ہاف ۔
+دیسی مرغ کڑا ہی فل ۔
+مٹن کڑاہی باف
+مٹن کڑاہی فل -
+دال چاول ۔
+بوائل چاول -
+چکن پلاؤ
+چکن بریانی -
+چکن فرائیڈ رائس -
+ایک فرائیڈ رائس۔
+ساده بریانی
+رہو گرل فش 1 کلو
+ر ہو فرائی خش 1 کلو
+فنگر فرائی خش 1 کلو
+ویسی پیٹس پیشل کھیر ( سمال الارج).
+دیسی بیٹس پیشل گال پر معلوہ 250 /ام
+Main Course
+Beef Nehari
+700/-
+Lahori Chanay
+300/-
+Special Daal
+350/-
+Special Sabzi
+350/-
+Chicken Qorma
+450/-
+Chicken Haleem
+480/-
+Chicken Qeema
+480/-
+Chicken Jalfarezi
+590/-
+Chicken Madrasi
+950/-
+Karahi
+Chicken Karahi Half
+1150/-
+Chicken Karahi Full-
+2250/-
+Chicken Handi Half-
+1490/-
+Chicken Handi Full
+2790/-
+Desi Murgh Karahi Half-
+1900/-
+Desi Murgh Karahi Full-
+3700/-
+Mutton Karahi Half-
+1950/-
+Mutton Karahi Full-
+3800/-
+Rice
+Daal Chawal
+450/-
+Plain Rice
+300/-
+Chicken Pulao
+480/-
+Chicken Bariyani
+500/-
+Chicken Fried Rice
+600/-
+Egg Fried Rice
+500/-
+Plain Bariyani
+300/-
+Fish
+Rahu Grilled Fish 1kg-
+1850/-
+Rahu Fried Fish 1 kg
+2000/-
+Finger Fried Fish 1 kg -
+2350/-
+Sweet
+DBC Special Kheer (S/L)
+320/580
+DBC Special Gajar Halwa 250g-
+900
+  
+B.B.Q
+Chicken Tikka Boti
+200/-
+Chicken Malia Boti
+400/-
+Chicken Tikka Pice Leg
+370/-
+Chicken Tikka Pice Chest
+380/-
+Chicken Tikka Per Plate
+400/-
+Malai Boti 6 seekh-
+2400/-
+Burger
+Zinger Burger /Fries
+350/-
+Beef Smash Burger /Fries
+400/-
+Crispy Chicken Petty Burger/Fries-
+350/-
+Anda Shami Burger
+220/-
+Shawarma
+Chicken Shawarma
+220/-
+Chicken Cheese Shawarma
+300/-
+Zinger Shawarma
+300/-
+Shawarma Platter
+480/-
+Garlic Mayo Roll
+B.B.Q Pratha Roll -
+Zinger Pratha Roll
+Roll Paratha
+350/-
+400/-
+380/-
+Fried Chicken
+HF
+Chicken Hot Shots
+450/800
+Chicken Fried 2 Piece/Fries
+499/-
+Chicken Fried 6 Piece/Fries
+1250/-
+Nuggets 6 Pcs with Fries
+499/-
+چکن تکہ بوٹی چکن ملائی بوٹی . چکن تکہ لیگ ہیں ۔ چکن تکہ چسٹ ہیں۔
+چکن تکہ فی پلیٹ -
+ملائی بوٹی 6 سیخ
+زنگر برگر + فرائز -
+بیف سمیش برگر + فرائز -
+کریسی چکن پیٹی برگر به فرائز
+انڈہ شامی برگر -
+چکن شوارما
+چکن چیز شوارما -
+زنگر شوارما
+شوار ما پلیٹر
+گارلک مائیورول -
+باربی کیو پر اٹھارول .
+زنگر پراٹھا رول
+چکن ہاٹ شارٹ .
+چکن فرائیڈ 2 پیس + فرائز -
+چکن فرائیڈ 6 پلیس + فرائز -
+نکٹس 6 پیس + فرائز -
+  
+
+
+مصالحہ ہاٹ ونگز 6 ہیں
+سمی سیڈ ہاٹ ونگز 6 ہیں ۔ گارلک بار بی کیو ونگز 6 پیں ۔
+ساده فرائز -
+مصالحہ فرائز -
+گارلک مائیو فرائز -
+سمی سیڈ فرائز -
+سموسہ پلیٹ
+پکوڑے 250 گرام ۔
+چکن پکوڑے 250 گرام ۔
+گرین سلاد
+منٹ راستہ
+منٹ ساس
+روٹی۔
+چپاتی
+تو اپراٹھا -
+روغنی نان -
+تندوری پر اٹھا ۔
+منٹ مارگریٹا ۔
+سیزنل شیک -
+کولڈ ڈرنک ( کین)
+کولڈ ڈرنک (1 لیٹر ) -
+کولڈ ڈرنک (1.5 لیٹر ) ۔
+منرل واٹر (لارج) مرل واٹر ( سمال)
+Hot Wings
+Masala Hot Wings 6 pcs-
+650/-
+Sesame Seed Hot Wings 6 pcs- Garlic B.B.Q Wings 6 pce -
+780/-
+850/-
+Fries / Refreshment
+Plan Fries
+200/400
+Masala Fries
+220/440
+Garlic Mayo Fries
+250/450
+Sesame Seed Fries
+250/499
+Samosa Plate
+180/-
+Pakoray 250g.
+220/-
+Chicken Pakoray 250g
+400/-
+Salad
+Green Salad
+100/-
+Mint Raita
+120/-
+Mint Sauce
+140/-
+Tandoor
+Roti
+25/-
+Naan
+30/-
+Chapati
+70/-
+Tawa Paratha
+80/-
+Roghni Naan
+70/-
+Tandoori Paratha
+70/-
+Kulcha
+50/-
+Drinks
+Mint Margarita Lasi
+Seasonal Shake
+350/-
+260/-
+450/-
+Cold Drink Can
+150/-
+Cold Drink 1Ltr.
+180/-
+Cold Drink 1.5 Ltr.
+250/-
+Mineral Water Large
+110/-
+Mineral Water Small
+70/-
+

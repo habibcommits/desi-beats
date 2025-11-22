@@ -34,6 +34,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       );
       
       const updated = await db.collection('orders').findOne({ _id: new ObjectId(id) });
+      if (!updated) {
+        return res.status(404).json({ error: 'Order not found after update' });
+      }
+      
       return res.status(200).json({ 
         id: updated._id.toString(),
         ...updated 

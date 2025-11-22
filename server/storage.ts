@@ -323,4 +323,17 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+// Conditionally use MongoDB or in-memory storage based on environment
+import { MongoStorage } from "./mongo-storage";
+
+function createStorage(): IStorage {
+  const mongoUri = process.env.MONGO_URI || process.env.MONGODB_URI;
+  
+  if (mongoUri) {
+    return new MongoStorage();
+  } else {
+    return new MemStorage();
+  }
+}
+
+export const storage = createStorage();

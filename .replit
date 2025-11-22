@@ -24,6 +24,10 @@ localPort = 5002
 externalPort = 5000
 
 [[ports]]
+localPort = 34731
+externalPort = 5173
+
+[[ports]]
 localPort = 36831
 externalPort = 3001
 
@@ -68,6 +72,8 @@ waitForPort = 5000
 [userenv.shared]
 VITE_IMAGEKIT_PUBLIC_KEY = "public_5ZOcRKen6PR7/Q5FPrOGseUR90U="
 VITE_IMAGEKIT_URL_ENDPOINT = "https://ik.imagekit.io/douamv4eq"
+ADMIN_USERNAME = "admin"
+ADMIN_PASSWORD = "admin123"
 
 [agent]
 expertMode = true

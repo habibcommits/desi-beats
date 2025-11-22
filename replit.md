@@ -45,10 +45,11 @@ Preferred communication style: Simple, everyday language.
 - Custom logging middleware for request monitoring
 
 **Data Storage Pattern**
-- **In-Memory Storage** (MemStorage class) as current implementation
-- Implements IStorage interface for easy migration to database
-- Seed data pre-populated for categories and menu items
-- Database-ready schema defined with Drizzle ORM
+- **MongoDB Storage** (MongoStorage class) used when MONGO_URI is set
+- **In-Memory Storage** (MemStorage class) fallback for development without database
+- Implements IStorage interface for consistent API across storage backends
+- Automatic storage selection based on environment variables
+- Database-ready schema defined with Mongoose models
 
 **API Structure**
 - `/api/categories` - Category listing and retrieval
@@ -71,21 +72,27 @@ Preferred communication style: Simple, everyday language.
 
 **Data Model**
 - **Categories**: name, slug, description, image, order (for sorting)
-- **Menu Items**: name, description, price (number stored in DB, string in API), image, availability flags (boolean in DB, 0/1 in API), category reference
-- **Orders**: customer details, delivery type, total amount (number in DB, string in API), status, items (JSON string), timestamp
+- **Menu Items**: name, description, price (number stored in DB), image, availability flags (boolean in DB), category reference
+- **Orders**: customer details, delivery type, total amount (number in DB), status, items (JSON string), timestamp
 - Order items stored as JSON string for flexibility
 
 **Database Connection**
 - MongoDB Atlas connection using MONGO_URI environment variable
 - Cached connection pattern to prevent connection exhaustion in serverless-like environments
 - Automatic reconnection handling in MongoStorage class
+- Automatic storage backend selection in server/storage.ts
+
+**Database Seeding**
+- Comprehensive seed script at `scripts/seed-database.ts`
+- Seeds 16 categories and 90 menu items
+- Run with: `npx tsx scripts/seed-database.ts`
+- Clears existing data before seeding for clean state
 
 **API Contract Compatibility**
 - MongoDB stores numbers and booleans natively
-- Storage layer converts to match legacy PostgreSQL API format:
-  - Numbers → strings for price/totalAmount fields
-  - Booleans → 0/1 integers for available/featured fields
-- Admin routes normalize inputs before validation to handle both formats
+- Storage layer (MongoStorage) converts MongoDB documents to application format
+- ObjectIds converted to strings for API responses
+- Consistent API regardless of storage backend (MongoDB or in-memory)
 
 ### Build & Deployment Architecture
 
@@ -149,3 +156,42 @@ Preferred communication style: Simple, everyday language.
 - Shared TypeScript types between client and server via `/shared` directory
 - Drizzle-Zod integration generates Zod schemas from database schema
 - Strict TypeScript configuration with no implicit any
+
+## Environment Variables
+
+### Required for Production
+- `MONGO_URI` or `MONGODB_URI` - MongoDB connection string (e.g., mongodb+srv://user:pass@cluster.mongodb.net/dbname)
+- `ADMIN_USERNAME` - Admin dashboard login username
+- `ADMIN_PASSWORD` - Admin dashboard login password
+
+### ImageKit Integration
+- `IMAGEKIT_PUBLIC_KEY` - ImageKit public key for client-side uploads
+- `IMAGEKIT_PRIVATE_KEY` - ImageKit private key for server-side operations
+- `IMAGEKIT_URL_ENDPOINT` - ImageKit URL endpoint (e.g., https://ik.imagekit.io/your-id/)
+- `VITE_IMAGEKIT_PUBLIC_KEY` - Public key exposed to frontend
+- `VITE_IMAGEKIT_URL_ENDPOINT` - URL endpoint exposed to frontend
+
+### Development Notes
+- Without `MONGO_URI`, app uses in-memory storage (MemStorage) with pre-seeded data
+- In-memory data resets on server restart
+- Set `MONGO_URI` to enable persistent MongoDB storage
+
+## Setup Instructions
+
+### First-Time Setup
+1. Set required environment variables (see above)
+2. Install dependencies: `npm install`
+3. Seed the database: `npx tsx scripts/seed-database.ts`
+4. Start the application: `npm run dev`
+
+### Re-seeding Database
+To clear and repopulate the database with fresh data:
+```bash
+npx tsx scripts/seed-database.ts
+```
+
+This will:
+- Connect to MongoDB using MONGO_URI
+- Clear all existing categories and menu items
+- Seed 16 categories and 90 menu items
+- Disconnect cleanly
